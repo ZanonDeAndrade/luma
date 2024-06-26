@@ -1,15 +1,14 @@
-// NavigationBar.tsx
 import React from 'react';
 import './NavigationBar.css';
 
 const NavigationBar: React.FC = () => {
   return (
     <div className="links-nav">
-      <a href="#">Aromaterapia</a>
-      <a href="#">Lembranças</a>
-      <a href="#">Decoração</a>
-      <a href="#">Presentes</a>
-      <a href="#">Marketing Olfativo (Empresarial)</a>
+      <a href="/aromaterapia">Aromaterapia</a>
+      <a href="/lembrancas">Lembranças</a>
+      <a href="/decoracao">Decoração</a>
+      <a href="/presentes">Presentes</a>
+      <a href="/marketing-olfativo">Marketing Olfativo (Empresarial)</a>
     </div>
   );
 };
