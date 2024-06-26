@@ -1,0 +1,24 @@
+/* NavigationBar.css */
+.links-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    background-color: #ffff;
+    border-radius: 5px;
+    width: 84.6%;
+    margin-left: 7%;
+  }
+  
+  .links-nav a {
+    text-decoration: none;
+    color: #000; 
+    font-size: 25px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .links-nav a:hover {
+    background-color: var(--cor-verde);
+    color: white;
+  }
+  

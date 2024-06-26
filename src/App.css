@@ -2,37 +2,169 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --cor-verde: #24B677;
+  --cor-braca: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.background-section {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.App-header {
-  background-color: #282c34;
+.background1 {
+  background-image: url('../public/background.avif');
   min-height: 100vh;
+}
+
+.Logo img {
+  margin-left: -75%;
+  width: 20%;
+}
+
+.pesquisa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -4%;
+  margin-bottom: 5%;
+  width: 100%;
+  position: relative;
+}
+
+.pesquisa input {
+  width: 350px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-button {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: var(--cor-verde);
+  height: 40.7px;
+  color: white;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  margin-right: 3%;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 5%;
+  font-size: 16px;
+  color: var(--cor-braca);
+  margin-right: 10%;
+  font-weight: bold;
+}
+
+.icon-button i {
+  margin-right: 5%;
+}
+
+.icon-button span {
+  margin-right: 5%;
+}
+
+/* Cart styles */
+.cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
+  padding: 20px;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.cart-header h2 {
+  margin: 0;
+  font-size: 18px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.close-cart {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+li img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+li span {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.remove-item {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--cor-vermelho);
+}
+
+.checkout-button {
+  background-color: var(--cor-verde);
+  color: var(--cor-braca);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px var(--cor-preto);
+  text-align: center;
+  margin-bottom: 15%;
+}
+
+/* Aroma.css */
+/* (Mantenha as alterações de estilos para o componente Aroma conforme já especificado) */
