@@ -82,8 +82,9 @@
   margin-right: 5%;
 }
 
-/* Cart styles */
-.cart {
+/* Cart and Favorites styles */
+.cart,
+.favorites {
   position: fixed;
   top: 0;
   right: 0;
@@ -99,7 +100,8 @@
   padding: 20px;
 }
 
-.cart-header {
+.cart-header,
+.favorites-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -107,12 +109,14 @@
   padding-bottom: 10px;
 }
 
-.cart-header h2 {
+.cart-header h2,
+.favorites-header h2 {
   margin: 0;
   font-size: 18px;
 }
 
-.close-cart {
+.close-cart,
+.close-favorites {
   background: none;
   border: none;
   font-size: 24px;
@@ -165,6 +169,3 @@ li span {
   text-align: center;
   margin-bottom: 15%;
 }
-
-/* Aroma.css */
-/* (Mantenha as alterações de estilos para o componente Aroma conforme já especificado) */

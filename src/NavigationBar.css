@@ -5,8 +5,8 @@
     margin-top: 10px;
     background-color: #ffff;
     border-radius: 5px;
-    width: 84.6%;
-    margin-left: 7%;
+    width: 56.94%;
+    margin-left: 21%;
   }
   
   .links-nav a {
@@ -15,6 +15,7 @@
     font-size: 25px;
     padding: 10px 20px;
     transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 15px;
   }
   
   .links-nav a:hover {

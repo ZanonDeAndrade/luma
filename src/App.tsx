@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import logo from './Assets/logo.png';
 import NavigationBar from './NavigationBar';
-import Aroma from './Aroma';
+import AromaTerapia from './Aroma';
 import Aroma1 from './Assets/Aroma1.jpeg';
 import Aroma2 from './Assets/Aroma2.jpeg';
 import Aroma3 from './Assets/Aroma3.jpeg';
@@ -11,9 +11,14 @@ import Aroma4 from './Assets/Aroma4.jpeg';
 const App: React.FC = () => {
   const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
   const [cartItems, setCartItems] = useState<number[]>(() => {
-    // Restaurar estado do carrinho do localStorage ao carregar a página
     const savedCartItems = localStorage.getItem('cartItems');
     return savedCartItems ? JSON.parse(savedCartItems) : [];
+  });
+
+  const [isFavoritesVisible, setIsFavoritesVisible] = useState<boolean>(false);
+  const [favoriteItems, setFavoriteItems] = useState<number[]>(() => {
+    const savedFavoriteItems = localStorage.getItem('favoriteItems');
+    return savedFavoriteItems ? JSON.parse(savedFavoriteItems) : [];
   });
 
   const items = [
@@ -27,25 +32,51 @@ const App: React.FC = () => {
     setIsCartVisible(!isCartVisible);
   };
 
+  const toggleFavoritesVisibility = () => {
+    setIsFavoritesVisible(!isFavoritesVisible);
+  };
+
   const addToCart = (itemIndex: number) => {
     setCartItems(prevCartItems => {
       const newCartItems = [...prevCartItems, itemIndex];
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems)); // Salvar no localStorage
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       return newCartItems;
+    });
+  };
+
+  const toggleFavorite = (itemIndex: number) => {
+    setFavoriteItems(prevFavoriteItems => {
+      const newFavoriteItems = prevFavoriteItems.includes(itemIndex)
+        ? prevFavoriteItems.filter(favIndex => favIndex !== itemIndex)
+        : [...prevFavoriteItems, itemIndex];
+      localStorage.setItem('favoriteItems', JSON.stringify(newFavoriteItems));
+      return newFavoriteItems;
     });
   };
 
   const removeFromCart = (index: number) => {
     setCartItems(prevCartItems => {
       const newCartItems = prevCartItems.filter((_, i) => i !== index);
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems)); // Atualizar no localStorage
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       return newCartItems;
     });
   };
 
+  const removeFromFavorites = (index: number) => {
+    setFavoriteItems(prevFavoriteItems => {
+      const newFavoriteItems = prevFavoriteItems.filter((_, i) => i !== index);
+      localStorage.setItem('favoriteItems', JSON.stringify(newFavoriteItems));
+      return newFavoriteItems;
+    });
+  };
+
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems)); // Salvar no localStorage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
+
+  useEffect(() => {
+    localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
+  }, [favoriteItems]);
 
   return (
     <div className="App">
@@ -59,10 +90,11 @@ const App: React.FC = () => {
             <i className="fas fa-search"></i>
           </button>
           <div className="icons">
-            <button className="icon-button">
+            <button className="icon-button" onClick={toggleFavoritesVisibility}>
               <i className="fas fa-heart"></i>
               <span>Favoritos</span>
               <i className="fas fa-chevron-down"></i>
+              {favoriteItems.length > 0 && <span className="favorites-count">{favoriteItems.length}</span>}
             </button>
             <button className="icon-button" onClick={toggleCartVisibility}>
               <i className="fas fa-shopping-bag"></i>
@@ -73,7 +105,7 @@ const App: React.FC = () => {
           </div>
         </div>
         <NavigationBar />
-        <Aroma addToCart={addToCart} />
+        <AromaTerapia addToCart={addToCart} toggleFavorite={toggleFavorite} favoriteItems={favoriteItems} />
       </div>
 
       {isCartVisible && (
@@ -96,6 +128,28 @@ const App: React.FC = () => {
             </ul>
           )}
           <button className="checkout-button">Finalizar Compra</button>
+        </div>
+      )}
+
+      {isFavoritesVisible && (
+        <div className="favorites">
+          <div className="favorites-header">
+            <h2>Favoritos</h2>
+            <button onClick={toggleFavoritesVisibility} className="close-favorites">&times;</button>
+          </div>
+          {favoriteItems.length === 0 ? (
+            <p>Você não tem itens favoritos</p>
+          ) : (
+            <ul>
+              {favoriteItems.map((itemIndex, idx) => (
+                <li key={idx}>
+                  <img src={items[itemIndex].image} alt={`aroma${itemIndex + 1}`} />
+                  <span>{items[itemIndex].nome}</span>
+                  <button className="remove-item" onClick={() => removeFromFavorites(idx)}>&times;</button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
     </div>

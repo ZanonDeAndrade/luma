@@ -8,11 +8,12 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 interface AromaProps {
   addToCart: (itemIndex: number) => void;
+  toggleFavorite: (itemIndex: number) => void;
+  favoriteItems: number[];
 }
 
-const AromaTerapia: React.FC<AromaProps> = ({ addToCart }) => {
+const AromaTerapia: React.FC<AromaProps> = ({ addToCart, toggleFavorite, favoriteItems }) => {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
-  const [favorites, setFavorites] = useState<number[]>([]);
 
   const items = [
     { image: Aroma1, description: 'Descrição do Aroma 1', nome: 'Home Spray Okê Arô', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
@@ -25,14 +26,6 @@ const AromaTerapia: React.FC<AromaProps> = ({ addToCart }) => {
     setFlippedIndex(flippedIndex === index ? null : index);
   };
 
-  const toggleFavorite = (index: number) => {
-    setFavorites(prevFavorites =>
-      prevFavorites.includes(index)
-        ? prevFavorites.filter(favIndex => favIndex !== index)
-        : [...prevFavorites, index]
-    );
-  };
-
   return (
     <div className="container">
       {items.map((item, index) => (
@@ -43,7 +36,7 @@ const AromaTerapia: React.FC<AromaProps> = ({ addToCart }) => {
           <div className="inner">
             <div className="front">
               <div
-                className={`heart-icon ${favorites.includes(index) ? 'favorite' : ''}`}
+                className={`heart-icon ${favoriteItems.includes(index) ? 'favorite' : ''}`}
                 onClick={() => toggleFavorite(index)}
               >
                 <i className="fas fa-heart"></i>
