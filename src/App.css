@@ -169,3 +169,77 @@ li span {
   text-align: center;
   margin-bottom: 15%;
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .Logo img {
+    margin-left: 0;
+    width: 30%;
+  }
+
+  .pesquisa input {
+    width: 300px;
+  }
+
+  .icon-button {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 992px) {
+  .pesquisa input {
+    width: 250px;
+  }
+
+  .icon-button {
+    margin: 0 3%;
+  }
+}
+
+@media (max-width: 768px) {
+  .pesquisa {
+    flex-direction: column;
+    margin-top: 0;
+    margin-bottom: 10%;
+  }
+
+  .pesquisa input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-button {
+    width: 100%;
+  }
+
+  .icons {
+    position: static;
+    margin-right: 0;
+  }
+
+  .icon-button {
+    margin: 0 2%;
+  }
+
+  .cart,
+  .favorites {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .pesquisa input {
+    width: 200px;
+  }
+
+  .icon-button {
+    font-size: 12px;
+    margin: 0 1%;
+  }
+
+  .checkout-button {
+    width: 100%;
+    margin-bottom: 20%;
+  }
+}

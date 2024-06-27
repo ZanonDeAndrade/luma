@@ -7,7 +7,7 @@ const NavigationBar: React.FC = () => {
       <a href="/aromaterapia">Aromaterapia</a>
       <a href="/lembrancas">Lembranças</a>
       <a href="/decoracao">Decoração</a>
-      <a href="/presentes">Presentes</a>
+      <a href="/presentes">Óleos Essenciais</a>
       <a href="/marketing-olfativo">Marketing Olfativo (Empresarial)</a>
     </div>
   );

@@ -21,17 +21,16 @@
     margin-top: 10px;
 }
 
-
 .back-buttons .flip-button {
     background-color: var(--cor-preto);
     padding: 2%;
     color: var(--cor-braca);
     border-radius: 5px;
     cursor: pointer;
-    width: 130%; /* Make the "Voltar" button narrower */
+    width: 130%;
     font-weight: bold;
     text-align: center;
-    height: 40px; /* Ensure equal height */
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,10 +45,10 @@
     color: var(--cor-braca);
     border-radius: 5px;
     cursor: pointer;
-    width: 60%; /* Make the "Adicionar ao Carrinho" button wider */
+    width: 60%;
     font-weight: bold;
     text-align: center;
-    height: 30px; /* Ensure equal height */
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,7 +88,7 @@
 
 .front {
     background-color: #fff;
-    flex-direction: column; /* Add this line to align items in a column */
+    flex-direction: column;
 }
 
 .back {
@@ -126,7 +125,7 @@
 }
 
 .text {
-    margin-top: 5%; /* Adjust the margin as needed */
+    margin-top: 5%;
     font-size: 14px;
     color: #333;
     text-align: center;
@@ -158,4 +157,82 @@
     margin-right: 40%;
 }
 
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .item {
+        width: 30%;
+        height: auto;
+    }
+}
 
+@media (max-width: 992px) {
+    .item {
+        width: 45%;
+        height: auto;
+    }
+    
+    .back-buttons .flip-button {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .back-buttons .cart {
+        margin-top: 0;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .comprar,
+    .clique {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .item {
+        width: 100%;
+        height: auto;
+    }
+
+    .comprar,
+    .clique {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 10px;
+    }
+
+    .back-buttons .flip-button,
+    .back-buttons .cart {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .text {
+        font-size: 12px;
+    }
+
+    .comprar,
+    .clique {
+        padding: 5%;
+        font-size: 14px;
+    }
+
+    .back-buttons .flip-button,
+    .back-buttons .cart {
+        font-size: 14px;
+        padding: 5%;
+    }
+
+    .item img {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .heart-icon {
+        font-size: 20px;
+    }
+}
