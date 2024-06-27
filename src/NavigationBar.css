@@ -23,3 +23,15 @@
     color: white;
   }
   
+
+
+  @media (max-width: 600px) {
+    .links-nav, .links-nav a{
+      width: 0%;
+    }
+
+    .links-nav a{
+      color: #fff;
+    }
+  }
+  
