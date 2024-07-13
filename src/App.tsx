@@ -10,19 +10,25 @@ import Aroma4 from './Assets/Aroma4.jpeg';
 import Aroma5 from './Assets/Aroma5.jpeg';
 import Aroma6 from './Assets/Aroma6.jpeg';
 
+interface CartItem {
+  itemIndex: number;
+  quantity: number;
+}
+
 const App: React.FC = () => {
   const items = [
-    { image: Aroma1, description: 'Descrição do Aroma 1', nome: 'Home Spray Okê Arô', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
-    { image: Aroma2, description: 'Descrição do Aroma 2', nome: 'Home Spray Odoyá SPA', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
-    { image: Aroma3, description: 'Descrição do Aroma 3', nome: 'Home Spray Limão do Vale', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
-    { image: Aroma4, description: 'Descrição do Aroma 4', nome: 'Home Spray Menta', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
+    { image: Aroma1, description: 'Descrição do Aroma 1', nome: 'Home Spray Okê Arô' },
+    { image: Aroma2, description: 'Descrição do Aroma 2', nome: 'Home Spray Odoyá SPA' },
+    { image: Aroma3, description: 'Descrição do Aroma 3', nome: 'Home Spray Limão do Vale' },
+    { image: Aroma4, description: 'Descrição do Aroma 4', nome: 'Home Spray Menta' },
+    { image: Aroma5, description: 'Descrição do Aroma 5', nome: 'Home Spray Luz Materna' },
+    { image: Aroma6, description: 'Descrição do Aroma 6', nome: 'Home Spray Menta' },
   ];
 
   const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
-  const [cartItems, setCartItems] = useState<number[]>(() => {
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
     const savedCartItems = localStorage.getItem('cartItems');
-    const parsedCartItems = savedCartItems ? JSON.parse(savedCartItems) : [];
-    return parsedCartItems.filter((index: number) => index >= 0 && index < items.length);
+    return savedCartItems ? JSON.parse(savedCartItems) : [];
   });
 
   const [isFavoritesVisible, setIsFavoritesVisible] = useState<boolean>(false);
@@ -47,10 +53,36 @@ const App: React.FC = () => {
 
   const addToCart = (itemIndex: number) => {
     setCartItems(prevCartItems => {
-      const newCartItems = [...prevCartItems, itemIndex];
+      const itemInCart = prevCartItems.find(item => item.itemIndex === itemIndex);
+      let newCartItems;
+      if (itemInCart) {
+        newCartItems = prevCartItems.map(item =>
+          item.itemIndex === itemIndex ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        newCartItems = [...prevCartItems, { itemIndex, quantity: 1 }];
+      }
       localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       return newCartItems;
     });
+  };
+
+  const incrementQuantity = (itemIndex: number) => {
+    setCartItems(prevCartItems =>
+      prevCartItems.map(item =>
+        item.itemIndex === itemIndex ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decrementQuantity = (itemIndex: number) => {
+    setCartItems(prevCartItems =>
+      prevCartItems.map(item =>
+        item.itemIndex === itemIndex && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
   };
 
   const toggleFavorite = (itemIndex: number) => {
@@ -63,9 +95,9 @@ const App: React.FC = () => {
     });
   };
 
-  const removeFromCart = (index: number) => {
+  const removeFromCart = (itemIndex: number) => {
     setCartItems(prevCartItems => {
-      const newCartItems = prevCartItems.filter((_, i) => i !== index);
+      const newCartItems = prevCartItems.filter(item => item.itemIndex !== itemIndex);
       localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       return newCartItems;
     });
@@ -127,13 +159,18 @@ const App: React.FC = () => {
             <p>Sua sacola está vazia</p>
           ) : (
             <ul>
-              {cartItems.map((itemIndex, idx) => (
+              {cartItems.map((cartItem, idx) => (
                 <li key={idx}>
-                  {items[itemIndex] ? (
+                  {items[cartItem.itemIndex] ? (
                     <>
-                      <img src={items[itemIndex].image} alt={`aroma${itemIndex + 1}`} />
-                      <span>{items[itemIndex].nome}</span>
-                      <button className="remove-item" onClick={() => removeFromCart(idx)}>&times;</button>
+                      <img src={items[cartItem.itemIndex].image} alt={`aroma${cartItem.itemIndex + 1}`} />
+                      <span>{items[cartItem.itemIndex].nome}</span>
+                      <div className="quantity">
+                        <button className="decrement" onClick={() => decrementQuantity(cartItem.itemIndex)}>-</button>
+                        <span>{cartItem.quantity}</span>
+                        <button className="increment" onClick={() => incrementQuantity(cartItem.itemIndex)}>+</button>
+                      </div>
+                      <button className="remove-item" onClick={() => removeFromCart(cartItem.itemIndex)}>&times;</button>
                     </>
                   ) : (
                     <span>Item não encontrado</span>
