@@ -17,7 +17,7 @@ const AromaTerapia: React.FC<AromaProps> = ({ addToCart, toggleFavorite, favorit
 
   const items = [
     { image: Aroma1, description: 'Descrição do Aroma 1', nome: 'Home Spray Okê Arô', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
-    { image: Aroma2, description: 'Descrição do Aroma 2', nome: 'Home Spray Odoyá SPA', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
+    { image: Aroma2, description: 'Poseidon, o Deus dos mares, em seu Home Spray de 100ml, vem sendo representado por um aroma fresco como o cheiro da chuva.  Remete ao aconchego e  sua indicação é para o uso em dormitórios, devido ao seu forte poder de higienização mental. Conheça a coleção Divinus e descubra o aroma perfeito para você!', nome: 'Home Spray Poseidon', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
     { image: Aroma3, description: 'Descrição do Aroma 3', nome: 'Home Spray Limão do Vale', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
     { image: Aroma4, description: 'Descrição do Aroma 4', nome: 'Home Spray Menta', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
   ];

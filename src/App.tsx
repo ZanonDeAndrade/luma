@@ -5,28 +5,35 @@ import NavigationBar from './NavigationBar';
 import AromaTerapia from './Aroma';
 import Aroma1 from './Assets/Aroma1.jpeg';
 import Aroma2 from './Assets/Aroma2.jpeg';
-import Aroma3 from './Assets/Aroma3.jpeg';  
+import Aroma3 from './Assets/Aroma3.jpeg';
 import Aroma4 from './Assets/Aroma4.jpeg';
 
 const App: React.FC = () => {
-  const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
-  const [cartItems, setCartItems] = useState<number[]>(() => {
-    const savedCartItems = localStorage.getItem('cartItems');
-    return savedCartItems ? JSON.parse(savedCartItems) : [];
-  });
-
-  const [isFavoritesVisible, setIsFavoritesVisible] = useState<boolean>(false);
-  const [favoriteItems, setFavoriteItems] = useState<number[]>(() => {
-    const savedFavoriteItems = localStorage.getItem('favoriteItems');
-    return savedFavoriteItems ? JSON.parse(savedFavoriteItems) : [];
-  });
-
   const items = [
     { image: Aroma1, description: 'Descrição do Aroma 1', nome: 'Home Spray Okê Arô', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
     { image: Aroma2, description: 'Descrição do Aroma 2', nome: 'Home Spray Odoyá SPA', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
     { image: Aroma3, description: 'Descrição do Aroma 3', nome: 'Home Spray Limão do Vale', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
     { image: Aroma4, description: 'Descrição do Aroma 4', nome: 'Home Spray Menta', text: 'Valor', clique: 'Descrição', comprar: 'Comprar' },
   ];
+
+  const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
+  const [cartItems, setCartItems] = useState<number[]>(() => {
+    const savedCartItems = localStorage.getItem('cartItems');
+    const parsedCartItems = savedCartItems ? JSON.parse(savedCartItems) : [];
+    return parsedCartItems.filter((index: number) => index >= 0 && index < items.length);
+  });
+
+  const [isFavoritesVisible, setIsFavoritesVisible] = useState<boolean>(false);
+  const [favoriteItems, setFavoriteItems] = useState<number[]>(() => {
+    const savedFavoriteItems = localStorage.getItem('favoriteItems');
+    const parsedFavoriteItems = savedFavoriteItems ? JSON.parse(savedFavoriteItems) : [];
+    return parsedFavoriteItems.filter((index: number) => index >= 0 && index < items.length);
+  });
+
+  useEffect(() => {
+    console.log('Cart Items:', cartItems);
+    console.log('Favorite Items:', favoriteItems);
+  }, [cartItems, favoriteItems]);
 
   const toggleCartVisibility = () => {
     setIsCartVisible(!isCartVisible);
@@ -120,9 +127,15 @@ const App: React.FC = () => {
             <ul>
               {cartItems.map((itemIndex, idx) => (
                 <li key={idx}>
-                  <img src={items[itemIndex].image} alt={`aroma${itemIndex + 1}`} />
-                  <span>{items[itemIndex].nome}</span>
-                  <button className="remove-item" onClick={() => removeFromCart(idx)}>&times;</button>
+                  {items[itemIndex] ? (
+                    <>
+                      <img src={items[itemIndex].image} alt={`aroma${itemIndex + 1}`} />
+                      <span>{items[itemIndex].nome}</span>
+                      <button className="remove-item" onClick={() => removeFromCart(idx)}>&times;</button>
+                    </>
+                  ) : (
+                    <span>Item não encontrado</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -143,9 +156,15 @@ const App: React.FC = () => {
             <ul>
               {favoriteItems.map((itemIndex, idx) => (
                 <li key={idx}>
-                  <img src={items[itemIndex].image} alt={`aroma${itemIndex + 1}`} />
-                  <span>{items[itemIndex].nome}</span>
-                  <button className="remove-item" onClick={() => removeFromFavorites(idx)}>&times;</button>
+                  {items[itemIndex] ? (
+                    <>
+                      <img src={items[itemIndex].image} alt={`aroma${itemIndex + 1}`} />
+                      <span>{items[itemIndex].nome}</span>
+                      <button className="remove-item" onClick={() => removeFromFavorites(idx)}>&times;</button>
+                    </>
+                  ) : (
+                    <span>Item não encontrado</span>
+                  )}
                 </li>
               ))}
             </ul>
