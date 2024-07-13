@@ -7,6 +7,8 @@ import Aroma1 from './Assets/Aroma1.jpeg';
 import Aroma2 from './Assets/Aroma2.jpeg';
 import Aroma3 from './Assets/Aroma3.jpeg';
 import Aroma4 from './Assets/Aroma4.jpeg';
+import Aroma5 from './Assets/Aroma5.jpeg';
+import Aroma6 from './Assets/Aroma6.jpeg';
 
 const App: React.FC = () => {
   const items = [
