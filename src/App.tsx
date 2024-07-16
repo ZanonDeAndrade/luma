@@ -17,12 +17,12 @@ interface CartItem {
 
 const App: React.FC = () => {
   const items = [
-    { image: Aroma1, description: 'Descrição do Aroma 1', nome: 'Home Spray Okê Arô' },
-    { image: Aroma2, description: 'Descrição do Aroma 2', nome: 'Home Spray Odoyá SPA' },
-    { image: Aroma3, description: 'Descrição do Aroma 3', nome: 'Home Spray Limão do Vale' },
-    { image: Aroma4, description: 'Descrição do Aroma 4', nome: 'Home Spray Menta' },
-    { image: Aroma5, description: 'Descrição do Aroma 5', nome: 'Home Spray Luz Materna' },
-    { image: Aroma6, description: 'Descrição do Aroma 6', nome: 'Home Spray Menta' },
+    { image: Aroma1, description: 'Descrição do Aroma 1', nome: 'Home Spray Okê Arô', price: 25.00 },
+    { image: Aroma2, description: 'Descrição do Aroma 2', nome: 'Home Spray Odoyá SPA', price: 30.00 },
+    { image: Aroma3, description: 'Descrição do Aroma 3', nome: 'Home Spray Limão do Vale', price: 20.00 },
+    { image: Aroma4, description: 'Descrição do Aroma 4', nome: 'Home Spray Menta', price: 22.50 },
+    { image: Aroma5, description: 'Descrição do Aroma 5', nome: 'Home Spray Luz Materna', price: 27.00 },
+    { image: Aroma6, description: 'Descrição do Aroma 6', nome: 'Home Spray Menta', price: 22.50 },
   ];
 
   const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
@@ -119,6 +119,14 @@ const App: React.FC = () => {
     localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
   }, [favoriteItems]);
 
+  // Função para calcular o total do pedido
+  const calculateTotal = () => {
+    return cartItems.reduce((total, cartItem) => {
+      const item = items[cartItem.itemIndex];
+      return total + item.price * cartItem.quantity;
+    }, 0).toFixed(2);
+  };
+
   return (
     <div className="App">
       <div className="background-section background1">
@@ -158,26 +166,31 @@ const App: React.FC = () => {
           {cartItems.length === 0 ? (
             <p>Sua sacola está vazia</p>
           ) : (
-            <ul>
-              {cartItems.map((cartItem, idx) => (
-                <li key={idx}>
-                  {items[cartItem.itemIndex] ? (
-                    <>
-                      <img src={items[cartItem.itemIndex].image} alt={`aroma${cartItem.itemIndex + 1}`} />
-                      <span>{items[cartItem.itemIndex].nome}</span>
-                      <div className="quantity">
-                        <button className="decrement" onClick={() => decrementQuantity(cartItem.itemIndex)}>-</button>
-                        <span>{cartItem.quantity}</span>
-                        <button className="increment" onClick={() => incrementQuantity(cartItem.itemIndex)}>+</button>
-                      </div>
-                      <button className="remove-item" onClick={() => removeFromCart(cartItem.itemIndex)}>&times;</button>
-                    </>
-                  ) : (
-                    <span>Item não encontrado</span>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <>
+              <ul>
+                {cartItems.map((cartItem, idx) => (
+                  <li key={idx}>
+                    {items[cartItem.itemIndex] ? (
+                      <>
+                        <img src={items[cartItem.itemIndex].image} alt={`aroma${cartItem.itemIndex + 1}`} />
+                        <span>{items[cartItem.itemIndex].nome}</span>
+                        <div className="quantity">
+                          <button className="decrement" onClick={() => decrementQuantity(cartItem.itemIndex)}>-</button>
+                          <span>{cartItem.quantity}</span>
+                          <button className="increment" onClick={() => incrementQuantity(cartItem.itemIndex)}>+</button>
+                        </div>
+                        <button className="remove-item" onClick={() => removeFromCart(cartItem.itemIndex)}>&times;</button>
+                      </>
+                    ) : (
+                      <span>Item não encontrado</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              <div className="total">
+                <h3>Total: R$ {calculateTotal()}</h3>
+              </div>
+            </>
           )}
           <button className="checkout-button">Finalizar Compra</button>
         </div>

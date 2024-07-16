@@ -58,7 +58,7 @@ const AromaTerapia: React.FC<AromaProps> = ({ addToCart, toggleFavorite, favorit
         {items.map((item, index) => (
           <div key={index} className={`item ${flippedIndex === index ? 'flipped' : ''}`}>
             <div className="inner">
-              <div className="front" onClick={() => handleFlip(index)}>
+              <div className="front">
                 <div
                   className={`heart-icon ${favoriteItems.includes(index) ? 'favorite' : ''}`}
                   onClick={(e) => {
@@ -77,14 +77,14 @@ const AromaTerapia: React.FC<AromaProps> = ({ addToCart, toggleFavorite, favorit
                   <button onClick={(e) => {
                     e.stopPropagation(); // Impede que o clique no botão ative o flip
                     handleAddToCart(index);
-                  }}>Adicionar ao Carrinho</button>
+                  }}>Adicionar a Sacola</button>
                   <button onClick={(e) => {
                     e.stopPropagation(); // Impede que o clique no botão ative o flip
                     handleFlip(index);
                   }}>Ver Descrição</button>
                 </div>
               </div>
-              <div className="back" onClick={(e) => e.stopPropagation()}> {/* Evita que clique na seção back adicione ao carrinho */}
+              <div className="back">
                 <p>{item.description}</p>
                 <div className="back-buttons">
                   <div className="flip-button" onClick={(e) => {

@@ -75,24 +75,37 @@
 .nome {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 15%;
+  margin-bottom: 3%;
   margin-top: 3%;
 }
 
-.clique, .comprar {
-  margin-top: 10px;
-  cursor: pointer;
-}
 
 .back-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Centraliza o botão "Voltar" horizontalmente */
   width: 100%;
   margin-top: 20px;
 }
 
 .flip-button, .cart {
   cursor: pointer;
+}
+
+.flip-button {
+  background-color: #4CAF50; /* Fundo verde */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border: none;
+  border-radius: 5px;
+}
+
+.flip-button:hover {
+  background-color: #45a049;
 }
 
 .button-container {
@@ -128,39 +141,33 @@
   border-radius: 5px;
 }
 
-
 .notification {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    transition: opacity 0.3s ease;
-  }
-  
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
 
+.price {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
 
+.original-price {
+  text-decoration: line-through;
+  color: red;
+  margin-right: 10px;
+}
 
-  .price {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  .original-price {
-    text-decoration: line-through;
-    color: red;
-    margin-right: 10px;
-  }
-  
-  .discount-price {
-    font-weight: bold;
-    color: green;
-  }
-  
-  
+.discount-price {
+  font-weight: bold;
+  color: green;
+}
