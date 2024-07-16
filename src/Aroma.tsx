@@ -21,12 +21,12 @@ const AromaTerapia: React.FC<AromaProps> = ({ addToCart, toggleFavorite, favorit
   const [notification, setNotification] = useState<string | null>(null);
 
   const items = [
-    { image: Aroma1, description: 'Imagine-se em uma floresta amazônica, com a brisa tropical acariciando sua pele e o aroma da floresta inundando o ar. Inspirado na majestade da floresta amazônica, o Okê Arô é a maneira perfeita de começar o dia com energia e bem-estar. Sua saída aromática é refrescante, com notas verdes e cereja.', nome: 'Home Spray Okê Arô' },
-    { image: Aroma2, description: 'Poseidon, o Deus dos mares, em seu Home Spray de 100ml, vem sendo representado por um aroma fresco como o cheiro da chuva. Remete ao aconchego e sua indicação é para o uso em dormitórios, devido ao seu forte poder de higienização mental. Conheça a coleção Divinus e descubra o aroma perfeito para você!', nome: 'Home Spray Poseidon' },
-    { image: Aroma3, description: 'Conhecido por suas propriedades revitalizantes e estimulantes. Ele é capaz de despertar os sentidos, melhorar o humor e aumentar a produtividade. O nosso Home Spray Limão do Vale é feito com ingredientes 100% naturais e de alta qualidade. Ele contém notas de limão siciliano, laranja doce, bergamota e capim-limão.', nome: 'Home Spray Limão do Vale' },
-    { image: Aroma4, description: 'Rico em mentol, um composto que tem efeitos neuroativos, como: Melhorar o foco e a concentração; Reduzir o estresse e a ansiedade, e até mesmo aliviar a dor. O nosso Home Spray de Menta é feito com óleos essenciais de menta, cânfora e lavanda, que proporcionam um aroma agradável e envolvente, com efeitos benéficos para a saúde e o bem-estar.', nome: 'Home Spray Menta' },
-    { image: Aroma5, description: 'Descrição do Aroma 5', nome: 'Home Spray Limão do Vale' },
-    { image: Aroma6, description: 'Descrição do Aroma 6', nome: 'Home Spray Menta' },
+    { image: Aroma1, description: 'Imagine-se em uma floresta amazônica, com a brisa tropical acariciando sua pele e o aroma da floresta inundando o ar. Inspirado na majestade da floresta amazônica, o Okê Arô é a maneira perfeita de começar o dia com energia e bem-estar. Sua saída aromática é refrescante, com notas verdes e cereja.', nome: 'Home Spray Okê Arô', originalPrice: 'R$ 60,00', discountPrice: 'R$ 50,00' },
+    { image: Aroma2, description: 'Poseidon, o Deus dos mares, em seu Home Spray de 100ml, vem sendo representado por um aroma fresco como o cheiro da chuva. Remete ao aconchego e sua indicação é para o uso em dormitórios, devido ao seu forte poder de higienização mental. Conheça a coleção Divinus e descubra o aroma perfeito para você!', nome: 'Home Spray Poseidon', originalPrice: 'R$ 70,00', discountPrice: 'R$ 60,00' },
+    { image: Aroma3, description: 'Conhecido por suas propriedades revitalizantes e estimulantes. Ele é capaz de despertar os sentidos, melhorar o humor e aumentar a produtividade. O nosso Home Spray Limão do Vale é feito com ingredientes 100% naturais e de alta qualidade. Ele contém notas de limão siciliano, laranja doce, bergamota e capim-limão.', nome: 'Home Spray Limão do Vale', originalPrice: 'R$ 65,00', discountPrice: 'R$ 55,00' },
+    { image: Aroma4, description: 'Rico em mentol, um composto que tem efeitos neuroativos, como: Melhorar o foco e a concentração; Reduzir o estresse e a ansiedade, e até mesmo aliviar a dor. O nosso Home Spray de Menta é feito com óleos essenciais de menta, cânfora e lavanda, que proporcionam um aroma agradável e envolvente, com efeitos benéficos para a saúde e o bem-estar.', nome: 'Home Spray Menta', originalPrice: 'R$ 55,00', discountPrice: 'R$ 45,00' },
+    { image: Aroma5, description: 'Um aroma acolhedor e inspirador que expressa toda a força e amor de uma mãe.', nome: 'Home Spray Illumina', originalPrice: 'R$ 80,00', discountPrice: 'R$ 70,00' },
+    { image: Aroma6, description: 'Traga a energia vibrante da Dandara para o seu lar! Um aroma cítrico e frutado, com a doçura da baunilha com folhas de ouro. Composto por óleos essenciais cuidadosamente selecionados, o Home Spray Dandara é perfeito para quem busca um ambiente alegre e revigorante e sentir uma sensação de bem-estar e positividade.', nome: 'Home Spray Dandara', originalPrice: 'R$ 75,00', discountPrice: 'R$ 65,00' },
   ];
 
   const settings = {
@@ -70,6 +70,9 @@ const AromaTerapia: React.FC<AromaProps> = ({ addToCart, toggleFavorite, favorit
                 </div>
                 <img src={item.image} alt={`aroma${index + 1}`} />
                 <div className='nome'>{item.nome}</div>
+                <div className='price'>
+                  <span className='original-price'>{item.originalPrice}</span> <span className='discount-price'>{item.discountPrice}</span>
+                </div>
                 <div className="button-container">
                   <button onClick={(e) => {
                     e.stopPropagation(); // Impede que o clique no botão ative o flip
