@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+*{
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --cor-verde: #24B677;
   --cor-branca: #fff;
@@ -245,11 +250,11 @@ li span {
   .icon-button i {
     font-size: 100%;
     margin-left: 3%;
-    margin-right: 15%;
+    margin-right: 10%;
   }
 
   .icon-button {
-    margin-left: -2%;
+    margin-left: 5%;
   }
 
   .icons{
