@@ -14,14 +14,18 @@
   background-repeat: no-repeat;
 }
 
+
+/* https://br.freepik.com/fotos-gratis/belo-rio-rodeado-de-plantas-e-flores-pelas-montanhas-sob-o-ceu-colorido_11111325.htm#fromView=search&page=3&position=20&uuid=b36febd8-8086-4151-be50-35b6de1daa81*/
+
 .background1 {
-  background-image: url('../public/background.avif');
+  background-image: url('../public/vertical-picture-sea-surrounded-by-rocks-covered-greenery-sunlight.jpg');
   min-height: 100vh;
 }
 
 .Logo img {
   margin-left: -75%;
-  width: 20%;
+  width: 18%;
+  margin-top: 3%;
 }
 
 .pesquisa {

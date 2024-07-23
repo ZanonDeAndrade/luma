@@ -3,26 +3,55 @@ import './App.css';
 import logo from './Assets/logo.png';
 import NavigationBar from './NavigationBar';
 import AromaTerapia from './Aroma';
+import Decoracao from './Decoracao';
+import Lembrancas from './Lembrancas';
 import Aroma1 from './Assets/Aroma1.jpeg';
 import Aroma2 from './Assets/Aroma2.jpeg';
 import Aroma3 from './Assets/Aroma3.jpeg';
 import Aroma4 from './Assets/Aroma4.jpeg';
 import Aroma5 from './Assets/Aroma5.jpeg';
 import Aroma6 from './Assets/Aroma6.jpeg';
+import Decoracao1 from './Assets/Decoração1.jpeg';
+import Decoracao2 from './Assets/Decoração2.jpeg';
+import Decoracao3 from './Assets/Decoração3.jpeg';
+import Decoracao4 from './Assets/Decoração4.jpeg';
+import Lembranca1 from './Assets/Lembrança1.jpeg';
+import Lembranca2 from './Assets/Lembrança2.jpeg';
+import Lembranca3 from './Assets/Lembrança3.jpeg';
+import Lembranca4 from './Assets/Lembrança4.jpeg';
+import Lembranca5 from './Assets/Lembrança5.jpeg';
+import Lembranca6 from './Assets/Lembrança6.jpeg';
 
 interface CartItem {
   itemIndex: number;
+  category: string;
   quantity: number;
 }
 
 const App: React.FC = () => {
-  const items = [
+  const aromaItems = [
     { image: Aroma1, description: 'Descrição do Aroma 1', nome: 'Home Spray Okê Arô', price: 25.00 },
     { image: Aroma2, description: 'Descrição do Aroma 2', nome: 'Home Spray Odoyá SPA', price: 30.00 },
     { image: Aroma3, description: 'Descrição do Aroma 3', nome: 'Home Spray Limão do Vale', price: 20.00 },
     { image: Aroma4, description: 'Descrição do Aroma 4', nome: 'Home Spray Menta', price: 22.50 },
-    { image: Aroma5, description: 'Descrição do Aroma 5', nome: 'Home Spray Luz Materna', price: 27.00 },
-    { image: Aroma6, description: 'Descrição do Aroma 6', nome: 'Home Spray Menta', price: 22.50 },
+    { image: Aroma5, description: 'Descrição do Aroma 5', nome: 'Home Spray Illumina', price: 27.00 },
+    { image: Aroma6, description: 'Descrição do Aroma 6', nome: 'Home Spray Dandara', price: 22.50 },
+  ];
+
+  const decoracaoItems = [
+    { image: Decoracao1, description: 'Um elegante vaso de cerâmica que adiciona um toque sofisticado a qualquer ambiente. Perfeito para flores frescas ou artificiais.', nome: 'Vaso de Cerâmica', price: 80.00 },
+    { image: Decoracao2, description: 'Quadro decorativo com arte abstrata moderna, ideal para salas de estar ou escritórios. Feito com materiais de alta qualidade.', nome: 'Quadro Abstrato', price: 120.00 },
+    { image: Decoracao3, description: 'Uma luminária de mesa estilosa que proporciona uma iluminação suave e agradável. Perfeita para mesas de estudo ou cabeceiras.', nome: 'Luminária de Mesa', price: 150.00 },
+    { image: Decoracao4, description: 'Espelho decorativo com moldura dourada, ideal para adicionar um toque de glamour ao seu quarto ou sala de estar.', nome: 'Espelho Dourado', price: 200.00 },
+  ];
+
+  const lembrancaItems = [
+    { image: Lembranca1, description: 'Um elegante vaso de cerâmica que adiciona um toque sofisticado a qualquer ambiente. Perfeito para flores frescas ou artificiais.', nome: 'Vaso de Cerâmica', originalPrice: 'R$ 80,00', discountPrice: 'R$ 70,00' },
+    { image: Lembranca2, description: 'Quadro decorativo com arte abstrata moderna, ideal para salas de estar ou escritórios. Feito com materiais de alta qualidade.', nome: 'Quadro Abstrato', originalPrice: 'R$ 120,00', discountPrice: 'R$ 100,00' },
+    { image: Lembranca3, description: 'Uma luminária de mesa estilosa que proporciona uma iluminação suave e agradável. Perfeita para mesas de estudo ou cabeceiras.', nome: 'Luminária de Mesa', originalPrice: 'R$ 150,00', discountPrice: 'R$ 130,00' },
+    { image: Lembranca4, description: 'Espelho decorativo com moldura dourada, ideal para adicionar um toque de glamour ao seu quarto ou sala de estar.', nome: 'Espelho Dourado', originalPrice: 'R$ 200,00', discountPrice: 'R$ 180,00' },
+    { image: Lembranca5, description: 'Uma luminária de mesa estilosa que proporciona uma iluminação suave e agradável. Perfeita para mesas de estudo ou cabeceiras.', nome: 'Luminária de Mesa', originalPrice: 'R$ 150,00', discountPrice: 'R$ 130,00' },
+    { image: Lembranca6, description: 'Espelho decorativo com moldura dourada, ideal para adicionar um toque de glamour ao seu quarto ou sala de estar.', nome: 'Espelho Dourado', originalPrice: 'R$ 200,00', discountPrice: 'R$ 180,00' },
   ];
 
   const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
@@ -35,7 +64,7 @@ const App: React.FC = () => {
   const [favoriteItems, setFavoriteItems] = useState<number[]>(() => {
     const savedFavoriteItems = localStorage.getItem('favoriteItems');
     const parsedFavoriteItems = savedFavoriteItems ? JSON.parse(savedFavoriteItems) : [];
-    return parsedFavoriteItems.filter((index: number) => index >= 0 && index < items.length);
+    return parsedFavoriteItems.filter((index: number) => index >= 0 && index < aromaItems.length + decoracaoItems.length);
   });
 
   useEffect(() => {
@@ -51,34 +80,38 @@ const App: React.FC = () => {
     setIsFavoritesVisible(!isFavoritesVisible);
   };
 
-  const addToCart = (itemIndex: number) => {
+  const addToCart = (itemIndex: number, category: string) => {
     setCartItems(prevCartItems => {
-      const itemInCart = prevCartItems.find(item => item.itemIndex === itemIndex);
+      const itemInCart = prevCartItems.find(item => item.itemIndex === itemIndex && item.category === category);
       let newCartItems;
       if (itemInCart) {
         newCartItems = prevCartItems.map(item =>
-          item.itemIndex === itemIndex ? { ...item, quantity: item.quantity + 1 } : item
+          item.itemIndex === itemIndex && item.category === category
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         );
       } else {
-        newCartItems = [...prevCartItems, { itemIndex, quantity: 1 }];
+        newCartItems = [...prevCartItems, { itemIndex, category, quantity: 1 }];
       }
       localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       return newCartItems;
     });
   };
 
-  const incrementQuantity = (itemIndex: number) => {
+  const incrementQuantity = (itemIndex: number, category: string) => {
     setCartItems(prevCartItems =>
       prevCartItems.map(item =>
-        item.itemIndex === itemIndex ? { ...item, quantity: item.quantity + 1 } : item
+        item.itemIndex === itemIndex && item.category === category
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
       )
     );
   };
 
-  const decrementQuantity = (itemIndex: number) => {
+  const decrementQuantity = (itemIndex: number, category: string) => {
     setCartItems(prevCartItems =>
       prevCartItems.map(item =>
-        item.itemIndex === itemIndex && item.quantity > 1
+        item.itemIndex === itemIndex && item.category === category && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
@@ -95,9 +128,9 @@ const App: React.FC = () => {
     });
   };
 
-  const removeFromCart = (itemIndex: number) => {
+  const removeFromCart = (itemIndex: number, category: string) => {
     setCartItems(prevCartItems => {
-      const newCartItems = prevCartItems.filter(item => item.itemIndex !== itemIndex);
+      const newCartItems = prevCartItems.filter(item => !(item.itemIndex === itemIndex && item.category === category));
       localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       return newCartItems;
     });
@@ -122,7 +155,7 @@ const App: React.FC = () => {
   // Função para calcular o total do pedido
   const calculateTotal = () => {
     return cartItems.reduce((total, cartItem) => {
-      const item = items[cartItem.itemIndex];
+      const item = cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex] : decoracaoItems[cartItem.itemIndex];
       return total + item.price * cartItem.quantity;
     }, 0).toFixed(2);
   };
@@ -154,7 +187,9 @@ const App: React.FC = () => {
           </div>
         </div>
         <NavigationBar />
-        <AromaTerapia addToCart={addToCart} toggleFavorite={toggleFavorite} favoriteItems={favoriteItems} />
+        <AromaTerapia addToCart={(index) => addToCart(index, 'aroma')} toggleFavorite={toggleFavorite} favoriteItems={favoriteItems} />
+        <Decoracao addToCart={(index) => addToCart(index, 'decoracao')} toggleFavorite={toggleFavorite} favoriteItems={favoriteItems} />
+        <Lembrancas addToCart={(index) => addToCart(index, 'lembrancas')} toggleFavorite={toggleFavorite} favoriteItems={favoriteItems} />
       </div>
 
       {isCartVisible && (
@@ -168,24 +203,27 @@ const App: React.FC = () => {
           ) : (
             <>
               <ul>
-                {cartItems.map((cartItem, idx) => (
-                  <li key={idx}>
-                    {items[cartItem.itemIndex] ? (
-                      <>
-                        <img src={items[cartItem.itemIndex].image} alt={`aroma${cartItem.itemIndex + 1}`} />
-                        <span>{items[cartItem.itemIndex].nome}</span>
-                        <div className="quantity">
-                          <button className="decrement" onClick={() => decrementQuantity(cartItem.itemIndex)}>-</button>
-                          <span>{cartItem.quantity}</span>
-                          <button className="increment" onClick={() => incrementQuantity(cartItem.itemIndex)}>+</button>
-                        </div>
-                        <button className="remove-item" onClick={() => removeFromCart(cartItem.itemIndex)}>&times;</button>
-                      </>
-                    ) : (
-                      <span>Item não encontrado</span>
-                    )}
-                  </li>
-                ))}
+                {cartItems.map((cartItem, idx) => {
+                  const item = cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex] : decoracaoItems[cartItem.itemIndex];
+                  return (
+                    <li key={idx}>
+                      {item ? (
+                        <>
+                          <img src={item.image} alt={`item${cartItem.itemIndex + 1}`} />
+                          <span>{item.nome}</span>
+                          <div className="quantity">
+                            <button className="decrement" onClick={() => decrementQuantity(cartItem.itemIndex, cartItem.category)}>-</button>
+                            <span>{cartItem.quantity}</span>
+                            <button className="increment" onClick={() => incrementQuantity(cartItem.itemIndex, cartItem.category)}>+</button>
+                          </div>
+                          <button className="remove-item" onClick={() => removeFromCart(cartItem.itemIndex, cartItem.category)}>&times;</button>
+                        </>
+                      ) : (
+                        <span>Item não encontrado</span>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
               <div className="total">
                 <h3>Total: R$ {calculateTotal()}</h3>
@@ -206,19 +244,22 @@ const App: React.FC = () => {
             <p>Você não tem itens favoritos</p>
           ) : (
             <ul>
-              {favoriteItems.map((itemIndex, idx) => (
-                <li key={idx}>
-                  {items[itemIndex] ? (
-                    <>
-                      <img src={items[itemIndex].image} alt={`aroma${itemIndex + 1}`} />
-                      <span>{items[itemIndex].nome}</span>
-                      <button className="remove-item" onClick={() => removeFromFavorites(idx)}>&times;</button>
-                    </>
-                  ) : (
-                    <span>Item não encontrado</span>
-                  )}
-                </li>
-              ))}
+              {favoriteItems.map((itemIndex, idx) => {
+                const item = itemIndex < aromaItems.length ? aromaItems[itemIndex] : decoracaoItems[itemIndex - aromaItems.length];
+                return (
+                  <li key={idx}>
+                    {item ? (
+                      <>
+                        <img src={item.image} alt={`item${itemIndex + 1}`} />
+                        <span>{item.nome}</span>
+                        <button className="remove-item" onClick={() => removeFromFavorites(idx)}>&times;</button>
+                      </>
+                    ) : (
+                      <span>Item não encontrado</span>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>
