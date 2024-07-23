@@ -20,7 +20,6 @@
 .background1 {
   background-image: url('../public/vertical-picture-sea-surrounded-by-rocks-covered-greenery-sunlight.jpg');
   min-height: 100vh;
-  width: 110%;
 }
 
 .Logo img {
@@ -242,6 +241,11 @@ li span {
 }
 
 @media (max-width: 450px) {
+
+  .background1{
+    width: 110%;
+  }
+
   .icon-button i {
     font-size: 100%;
     margin-left: 3%;
@@ -263,7 +267,4 @@ li span {
     margin-left: 27%;
   }
 
-  .increment, .decrement{
-
-  }
 }
