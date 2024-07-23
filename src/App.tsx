@@ -166,11 +166,6 @@ const App: React.FC = () => {
         <div className="Logo">
           <img src={logo} alt="Logo" />
         </div>
-        <div className="pesquisa">
-          <input type="text" placeholder="O que você procura hoje?" />
-          <button className="search-button">
-            <i className="fas fa-search"></i>
-          </button>
           <div className="icons">
             <button className="icon-button" onClick={toggleFavoritesVisibility}>
               <i className="fas fa-heart"></i>
@@ -185,6 +180,11 @@ const App: React.FC = () => {
               {cartItems.length > 0 && <span className="cart-count">{cartItems.length}</span>}
             </button>
           </div>
+          <div className="pesquisa">
+          <input type="text" placeholder="O que você procura hoje?" />
+          <button className="search-button">
+            <i className="fas fa-search"></i>
+          </button>
         </div>
         <NavigationBar />
         <AromaTerapia addToCart={(index) => addToCart(index, 'aroma')} toggleFavorite={toggleFavorite} favoriteItems={favoriteItems} />
