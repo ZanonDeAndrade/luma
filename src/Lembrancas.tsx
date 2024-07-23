@@ -9,13 +9,13 @@ import Lembranca6 from './Assets/Lembrança6.jpeg';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-interface LembrancasProps {
+interface LembrancaProps {
   addToCart: (itemIndex: number) => void;
   toggleFavorite: (itemIndex: number) => void;
   favoriteItems: number[];
 }
 
-const Lembrancas: React.FC<LembrancasProps> = ({ addToCart, toggleFavorite, favoriteItems }) => {
+const Lembrancas: React.FC<LembrancaProps> = ({ addToCart, toggleFavorite, favoriteItems }) => {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
 

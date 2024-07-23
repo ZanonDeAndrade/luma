@@ -45,7 +45,7 @@ const App: React.FC = () => {
     { image: Decoracao4, description: 'Espelho decorativo com moldura dourada, ideal para adicionar um toque de glamour ao seu quarto ou sala de estar.', nome: 'Espelho Dourado', price: 200.00 },
   ];
 
-  const lembrancaItems = [
+  const lembrancasItems = [
     { image: Lembranca1, description: 'Um elegante vaso de cerâmica que adiciona um toque sofisticado a qualquer ambiente. Perfeito para flores frescas ou artificiais.', nome: 'Vaso de Cerâmica', originalPrice: 'R$ 80,00', discountPrice: 'R$ 70,00' },
     { image: Lembranca2, description: 'Quadro decorativo com arte abstrata moderna, ideal para salas de estar ou escritórios. Feito com materiais de alta qualidade.', nome: 'Quadro Abstrato', originalPrice: 'R$ 120,00', discountPrice: 'R$ 100,00' },
     { image: Lembranca3, description: 'Uma luminária de mesa estilosa que proporciona uma iluminação suave e agradável. Perfeita para mesas de estudo ou cabeceiras.', nome: 'Luminária de Mesa', originalPrice: 'R$ 150,00', discountPrice: 'R$ 130,00' },
@@ -204,7 +204,7 @@ const App: React.FC = () => {
             <>
               <ul>
                 {cartItems.map((cartItem, idx) => {
-                  const item = cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex] : decoracaoItems[cartItem.itemIndex];
+                  const item = cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex] : cartItem.category === 'decoracao' ? decoracaoItems[cartItem.itemIndex] : lembrancasItems[cartItem.itemIndex];
                   return (
                     <li key={idx}>
                       {item ? (
@@ -245,7 +245,7 @@ const App: React.FC = () => {
           ) : (
             <ul>
               {favoriteItems.map((itemIndex, idx) => {
-                const item = itemIndex < aromaItems.length ? aromaItems[itemIndex] : decoracaoItems[itemIndex - aromaItems.length];
+                const item = itemIndex < aromaItems.length ? aromaItems[itemIndex] : itemIndex < aromaItems.length + decoracaoItems.length ? decoracaoItems[itemIndex - aromaItems.length] : lembrancasItems[itemIndex - aromaItems.length - decoracaoItems.length];
                 return (
                   <li key={idx}>
                     {item ? (
