@@ -117,15 +117,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border: 2px solid red; /* Temporário para visualização */
 }
-
-.background1 {
-  background-image: url('../public/vertical-picture-sea-surrounded-by-rocks-covered-greenery-sunlight.jpg');
-  min-height: 100vh;
-  border: 2px solid green; /* Temporário para visualização */
-}
-
 
 .cart-header,
 .favorites-header {
