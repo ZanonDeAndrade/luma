@@ -242,10 +242,6 @@ li span {
 
 @media (max-width: 450px) {
 
-  .background1{
-    width: 110%;
-  }
-
   .icon-button i {
     font-size: 100%;
     margin-left: 3%;
@@ -253,7 +249,7 @@ li span {
   }
 
   .icon-button {
-    margin-left: 1%;
+    margin-left: -2%;
   }
 
   .icons{
