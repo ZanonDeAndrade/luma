@@ -26,6 +26,7 @@ import Visa from './Assets/Visa.png';
 import Elo from './Assets/Elo.png';
 import MasterCard from './Assets/Master.png';
 import Pix from './Assets/Pix.png';
+import seloSeguranca from './Assets/seloSeguranca.png';
 
 interface CartItem {
   itemIndex: number;
@@ -313,6 +314,10 @@ const App: React.FC = () => {
                 <img src={Boleto} alt="Boleto" />
                 <img className='pix' src={Pix} alt="Pix" />
               </div>
+            </div>
+            <div className='selo'>
+              <h3 className="selo-seguranca">Segurança</h3>
+              <img src={seloSeguranca} alt="Selo" />
             </div>
           </div>
           <div className="row">
