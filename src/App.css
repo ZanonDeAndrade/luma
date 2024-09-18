@@ -15,6 +15,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #ffffff;
 }
 
 
@@ -31,12 +32,6 @@ body {
 }
 
 
-/* https://br.freepik.com/fotos-gratis/belo-rio-rodeado-de-plantas-e-flores-pelas-montanhas-sob-o-ceu-colorido_11111325.htm#fromView=search&page=3&position=20&uuid=b36febd8-8086-4151-be50-35b6de1daa81*/
-
-.background1 {
-  background-image: url('../public/vertical-picture-sea-surrounded-by-rocks-covered-greenery-sunlight.jpg');
-  min-height: 100vh;
-}
 
 .Logo img {
   margin-left: -75%;
@@ -99,6 +94,120 @@ body {
 
 .icon-button span {
   margin-right: 5%;
+}
+
+
+/* Rodapé */
+footer {
+  background-color: #f2f2f2;
+  padding: 30px 0;
+  text-align: center;
+}
+
+/* Links do rodapé */
+footer a {
+  color: #333;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Colunas do rodapé */
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Conteúdo da coluna */
+footer .col {
+  flex: 1;
+}
+
+/* Título da coluna */
+footer .col h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Lista do rodapé */
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.footer-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.payment-methods {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.payment-methods .pix{
+  width: 35px;
+}
+
+.payment-icon {
+  width: 50px;
+  height: auto;
+  margin: 0 10px;
+}
+
+.pix{
+  width: 40px;
+}
+
+.footer-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.payment-methods {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.payment-methods img {
+  width: 50px; /* Ajuste o tamanho conforme necessário */
+  height: auto;
+}
+
+
+.selo-seguranca {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin-top: 10px;
+}
+
+
+/* Itens da lista do rodapé */
+footer li {
+  margin-bottom: 5px;
+}
+
+/* Ícones do rodapé */
+footer i {
+  margin-right: 5px;
 }
 
 /* Cart and Favorites styles */

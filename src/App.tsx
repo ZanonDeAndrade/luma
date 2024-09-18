@@ -21,6 +21,11 @@ import Lembranca3 from './Assets/Lembrança3.jpeg';
 import Lembranca4 from './Assets/Lembrança4.jpeg';
 import Lembranca5 from './Assets/Lembrança5.jpeg';
 import Lembranca6 from './Assets/Lembrança6.jpeg';
+import Boleto from './Assets/Boleto.png';
+import Visa from './Assets/Visa.png';
+import Elo from './Assets/Elo.png';
+import MasterCard from './Assets/Master.png';
+import Pix from './Assets/Pix.png';
 
 interface CartItem {
   itemIndex: number;
@@ -264,6 +269,60 @@ const App: React.FC = () => {
           )}
         </div>
       )}
+
+      <footer className="footer">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4">
+              <h3 className="footer-title">Sobre Nós</h3>
+              <p>Somos apaixonados por criar produtos que inspiram e trazem alegria para o seu dia a dia.</p>
+            </div>
+            <div className="col-md-4">
+              <h3 className="footer-title">Atendimento</h3>
+              <ul>
+                <li>
+                  <a href="#">Central de Atendimento</a>
+                </li>
+                <li>
+                  <a href="#">Fale Conosco</a>
+                </li>
+                <li>
+                  <a href="#">Perguntas Frequentes</a>
+                </li>
+              </ul>
+            </div>
+            <div className="col-md-4">
+              <h3 className="footer-title">Redes Sociais</h3>
+              <ul className="social-icons">
+                <li>
+                  <a href="#"><i className="fab fa-facebook-f"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i className="fab fa-instagram"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-12">
+              <h3 className="footer-title">Formas de Pagamento</h3>
+              <div className="payment-methods">
+                <img src={Visa} alt="Visa" />
+                <img src={MasterCard} alt="MasterCard" />
+                <img src={Elo} alt="Elo" />
+                <img src={Boleto} alt="Boleto" />
+                <img className='pix' src={Pix} alt="Pix" />
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-12 text-center">
+              <p className="copyright">© 2023 Luma Quarta Colônia. Todos os direitos reservados.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
     </div>
   );
 };
