@@ -1,0 +1,173 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.container {
+  width: 80%;
+  margin: auto;
+  margin-top: 5%;
+  height: 100vh;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* Necessário para as animações de flip */
+}
+
+.inner {
+  perspective: 1000px;
+  width: 300px;
+  height: 500px; /* Aumentado para acomodar os botões */
+}
+
+.front, .back {
+  width: 100%;
+  height: 85%;
+  backface-visibility: hidden;
+  transition: transform 0.6s;
+  position: absolute;
+}
+
+.front {
+  transform: rotateY(0deg);
+  background-color: white;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background-color: white;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.item.flipped .front {
+  transform: rotateY(-180deg);
+}
+
+.item.flipped .back {
+  transform: rotateY(0deg);
+}
+
+.heart-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  color: grey;
+}
+
+.heart-icon.favorite {
+  color: red;
+}
+
+.nome {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 3%;
+  margin-top: 3%;
+}
+
+
+.back-buttons {
+  display: flex;
+  justify-content: center; /* Centraliza o botão "Voltar" horizontalmente */
+  width: 100%;
+  margin-top: 20px;
+}
+
+.flip-button, .cart {
+  cursor: pointer;
+}
+
+.flip-button {
+  background-color: #4CAF50; /* Fundo verde */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border: none;
+  border-radius: 5px;
+}
+
+.flip-button:hover {
+  background-color: #45a049;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.button-container button {
+  background-color: #4CAF50; /* Verde */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  margin-bottom: 12%;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button-container button:hover {
+  background-color: #45a049;
+}
+
+/* Adicionado para ajustar o tamanho das imagens */
+.front img, .back img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.notification {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: red;
+  margin-right: 10px;
+}
+
+.discount-price {
+  font-weight: bold;
+  color: green;
+}

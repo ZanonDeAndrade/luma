@@ -21,7 +21,9 @@ body {
 
 :root {
   --cor-verde: #24B677;
+  --cor-verdEscuro: #1d7902;
   --cor-branca: #fff;
+  --cor-preta: #000;
 }
 
 .background-section {
@@ -60,8 +62,8 @@ body {
 .search-button {
   padding: 10px;
   border: 1px solid #ddd;
-  background-color: var(--cor-verde);
-  height: 40.7px;
+  background-color: var(--cor-verdEscuro);
+  height: 40.8px;
   color: white;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
@@ -84,7 +86,7 @@ body {
   margin-right: 2%;
   margin-top: -5%;
   font-size: 16px;
-  color: var(--cor-branca);
+  color: var(--cor-verdEscuro);
   font-weight: bold;
 }
 
@@ -218,7 +220,7 @@ footer i {
   right: 0;
   width: 300px;
   height: 100%;
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   transform: translateX(0);
