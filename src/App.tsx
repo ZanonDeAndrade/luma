@@ -271,62 +271,64 @@ const App: React.FC = () => {
         </div>
       )}
 
-      <footer className="footer">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-4">
-              <h3 className="footer-title">Sobre Nós</h3>
-              <p>Somos apaixonados por criar produtos que inspiram e trazem alegria para o seu dia a dia.</p>
-            </div>
-            <div className="col-md-4">
-              <h3 className="footer-title">Atendimento</h3>
-              <ul>
-                <li>
-                  <a href="#">Central de Atendimento</a>
-                </li>
-                <li>
-                  <a href="#">Fale Conosco</a>
-                </li>
-                <li>
-                  <a href="#">Perguntas Frequentes</a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-md-4">
-              <h3 className="footer-title">Redes Sociais</h3>
-              <ul className="social-icons">
-                <li>
-                  <a href="#"><i className="fab fa-facebook-f"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i className="fab fa-instagram"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-12">
-              <h3 className="footer-title">Formas de Pagamento</h3>
-              <div className="payment-methods">
-                <img src={Visa} alt="Visa" />
-                <img src={MasterCard} alt="MasterCard" />
-                <img src={Elo} alt="Elo" />
-                <img src={Boleto} alt="Boleto" />
-                <img className='pix' src={Pix} alt="Pix" />
-              </div>
-            </div>
-            <div className='selo'>
-              <h3 className="selo-seguranca">Segurança</h3>
-              <img src={seloSeguranca} alt="Selo" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-12 text-center">
-              <p className="copyright">© 2023 Luma Quarta Colônia. Todos os direitos reservados.</p>
-            </div>
-          </div>
+<footer className="footer">
+  <div className="container">
+    <div className="row">
+      <div className="sobre">
+        <h3 className="footer-title">Sobre Nós</h3>
+        <p>Somos apaixonados por criar produtos que inspiram e trazem alegria para o seu dia a dia.</p>
+      </div>
+    </div>
+
+    <div className="row">
+      <div className="col-md-6">
+        <h3 className="footer-title">Atendimento</h3>
+        <ul>
+          <li><a href="#">Central de Atendimento</a></li>
+          <li><a href="#">Fale Conosco</a></li>
+          <li><a href="#">Perguntas Frequentes</a></li>
+        </ul>
+      </div>
+      <div className="col-md-6">
+        <h3 className="footer-title">Redes Sociais</h3>
+        <ul className="social-icons">
+          <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
+          <li><a href="#"><i className="fab fa-instagram"></i></a></li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Seção "Formas de Pagamento" */}
+    <div className="row">
+      <div className="col-md-12">
+        <h3 className="footer-title">Formas de Pagamento</h3>
+        <div className="payment-methods">
+          <img src={Visa} alt="Visa" />
+          <img src={MasterCard} alt="MasterCard" />
+          <img src={Elo} alt="Elo" />
+          <img src={Boleto} alt="Boleto" />
+          <img className="pix" src={Pix} alt="Pix" />
         </div>
-      </footer>
+      </div>
+    </div>
+
+    {/* Seção "Segurança" */}
+    <div className="row">
+      <div className="col-md-12 text-center selo">
+        <h3 className="selo-seguranca">Segurança</h3>
+        <img src={seloSeguranca} alt="Selo de Segurança" />
+      </div>
+    </div>
+
+    {/* Direitos reservados */}
+    <div className="row">
+      <div className="col-md-12 text-center">
+        <p className="copyright">© 2024 Luma Quarta Colônia. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
 
     </div>
   );

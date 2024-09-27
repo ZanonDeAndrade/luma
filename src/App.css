@@ -144,7 +144,7 @@ footer ul {
 
 
 .footer {
-  background-color: #f8f9fa;
+  background-color: #dddee0;
   padding: 20px;
   margin-top: 30px;
 }
@@ -389,5 +389,34 @@ li span {
     width: 50%;
     margin-left: 27%;
   }
+
+  .footer {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .footer .row .sobre{
+    margin-top: -210%;
+    width: 200%;
+    display: flex;
+
+  }
+
+  .footer .row .sobre h3{
+    width: 80%;
+    margin-left: 22%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer .row .sobre p{
+    margin-top: 15%;
+    margin-left: -79%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
 
 }
