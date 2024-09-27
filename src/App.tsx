@@ -292,8 +292,8 @@ const App: React.FC = () => {
           <div className="col-md-6">
             <h3 className="footer-title">Redes Sociais</h3>
             <ul className="social-icons">
-              <li><a href="/facebook"><i className="fab fa-facebook-f"></i></a></li>
-              <li><a href="/instagram"><i className="fab fa-instagram"></i></a></li>
+              <li><a href="https://www.facebook.com/lumaquartacolonia"><i className="fab fa-facebook-f"></i></a></li>
+              <li><a href="https://www.instagram.com/lumaquartacolonia/"><i className="fab fa-instagram"></i></a></li>
             </ul>
           </div>
         </div>
