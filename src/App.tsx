@@ -286,11 +286,11 @@ const App: React.FC = () => {
             <ul>
               <li><a href="/central">Central de Atendimento</a></li>
               <li><a href="/fale">Fale Conosco</a></li>
-              <li><a href="/perguntas">Perguntas Frequentes</a></li>
+              <li><a className='perguntas' href="/perguntas">Perguntas Frequentes</a></li>
             </ul>
           </div>
-          <div className="col-md-6">
-            <h3 className="footer-title">Redes Sociais</h3>
+          <div className="col-md-7">
+            <h3 className="footer-title-redes">Redes Sociais</h3>
             <ul className="social-icons">
               <li><a href="https://www.facebook.com/lumaquartacolonia"><i className="fab fa-facebook-f"></i></a></li>
               <li><a href="https://www.instagram.com/lumaquartacolonia/"><i className="fab fa-instagram"></i></a></li>
@@ -301,7 +301,7 @@ const App: React.FC = () => {
         {/* Seção "Formas de Pagamento" */}
         <div className="row">
           <div className="col-md-12">
-            <h3 className="footer-title">Formas de Pagamento</h3>
+            <h3 className="footer-title-pagamento">Formas de Pagamento</h3>
             <div className="payment-methods">
               <img src={Visa} alt="Visa" />
               <img src={MasterCard} alt="MasterCard" />
@@ -314,7 +314,7 @@ const App: React.FC = () => {
 
         {/* Seção "Segurança" */}
         <div className="row">
-          <div className="col-md-12 text-center selo">
+          <div className="col-md-13">
             <h3 className="selo-seguranca">Segurança</h3>
             <img src={seloSeguranca} alt="Selo de Segurança" />
           </div>

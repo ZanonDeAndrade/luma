@@ -147,6 +147,7 @@ footer ul {
   background-color: #dddee0;
   padding: 20px;
   margin-top: 30px;
+  height: 100vh;
 }
 
 .footer-title {
@@ -407,6 +408,7 @@ li span {
     margin-left: 22%;
     align-items: center;
     justify-content: center;
+    color: #333;
   }
 
   .footer .row .sobre p{
@@ -417,5 +419,46 @@ li span {
     justify-content: center;
   }
 
+  .footer .row .col-md-6{
+    margin-left: -115%;
+  }
 
-}
+
+  .col-md-7 .footer-title-redes{
+    font-size: 140%;
+    color: #333;
+    margin-top: 34%;
+    margin-left: -115%;
+  }
+
+ 
+  .col-md-7 .social-icons{
+    margin-left: -115%;
+  }
+
+
+  .col-md-12{
+    margin-left: -210%;
+    color: #333;
+    margin-top: 182%;
+    font-size: 120%;
+  }
+
+  .col-md-13 {
+    width: 140%;
+    margin-left: -520%;
+    color: #333;
+    font-size: 140%;
+    margin-top: 850%;
+  }
+
+  .col-md-13 img {
+    width: 100%;
+    margin-left: -14%;
+    margin-top: 5%;
+  }
+
+  
+
+  }
+
