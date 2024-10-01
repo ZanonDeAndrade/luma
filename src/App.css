@@ -370,7 +370,7 @@ li span {
 
 @media (max-width: 450px) {
 
-  .icon-button i {
+    .icon-button i {
     font-size: 100%;
     margin-left: 3%;
     margin-right: 10%;
@@ -393,14 +393,13 @@ li span {
 
   .footer {
     width: 100%;
-    box-sizing: border-box;
+    background-color: #dddee0;
   }
 
   .footer .row .sobre{
-    margin-top: -210%;
+    margin-top: -215%;
     width: 200%;
     display: flex;
-
   }
 
   .footer .row .sobre h3{
@@ -456,6 +455,14 @@ li span {
     width: 100%;
     margin-left: -14%;
     margin-top: 5%;
+  }
+
+  .col-md-12_text-center{
+    margin-left: -1620%;
+    font-size: 90%;
+    margin-top: 1480%;
+    margin-bottom: 2%;
+    
   }
 
   

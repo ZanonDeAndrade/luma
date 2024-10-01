@@ -322,7 +322,7 @@ const App: React.FC = () => {
 
         {/* Direitos reservados */}
         <div className="row">
-          <div className="col-md-12 text-center">
+          <div className="col-md-12_text-center">
             <p className="copyright">© 2024 Luma Quarta Colônia. Todos os direitos reservados.</p>
           </div>
         </div>

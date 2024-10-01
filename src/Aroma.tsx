@@ -60,6 +60,7 @@ const AromaTerapia: React.FC<AromaProps> = ({ addToCart, toggleFavorite, favorit
     <div className="container">
       {notification && (
         <div className="notification">
+          <div className='notification'></div>
           {notification}
         </div>
       )}
