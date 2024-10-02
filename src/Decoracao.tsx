@@ -13,6 +13,24 @@ interface DecoracaoProps {
   favoriteItems: number[];
 }
 
+const SampleNextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div className="slick-arrow next" onClick={onClick}>
+      <i className="fas fa-chevron-right"></i>
+    </div>
+  );
+};
+
+const SamplePrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div className="slick-arrow prev" onClick={onClick}>
+      <i className="fas fa-chevron-left"></i>
+    </div>
+  );
+};
+
 const Decoracao: React.FC<DecoracaoProps> = ({ addToCart, toggleFavorite, favoriteItems }) => {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
@@ -30,9 +48,11 @@ const Decoracao: React.FC<DecoracaoProps> = ({ addToCart, toggleFavorite, favori
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 768, // largura de tela até 768px (dispositivos móveis)
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

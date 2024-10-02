@@ -15,6 +15,24 @@ interface LembrancaProps {
   favoriteItems: number[];
 }
 
+const SampleNextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div className="slick-arrow next" onClick={onClick}>
+      <i className="fas fa-chevron-right"></i>
+    </div>
+  );
+};
+
+const SamplePrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div className="slick-arrow prev" onClick={onClick}>
+      <i className="fas fa-chevron-left"></i>
+    </div>
+  );
+};
+
 const Lembrancas: React.FC<LembrancaProps> = ({ addToCart, toggleFavorite, favoriteItems }) => {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
@@ -28,22 +46,24 @@ const Lembrancas: React.FC<LembrancaProps> = ({ addToCart, toggleFavorite, favor
     { image: Lembranca6, description: 'Espelho decorativo com moldura dourada, ideal para adicionar um toque de glamour ao seu quarto ou sala de estar.', nome: 'Espelho Dourado', originalPrice: 'R$ 200,00', discountPrice: 'R$ 180,00' },
 ];
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [
-        {
-          breakpoint: 768, // largura de tela até 768px (dispositivos móveis)
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-          },
-        },
-      ],
-  };
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
 
   const handleFlip = (index: number) => {
     setFlippedIndex(flippedIndex === index ? null : index);

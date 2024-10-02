@@ -272,7 +272,7 @@ const App: React.FC = () => {
       )}
 
     <footer className="footer">
-      <div className="container">
+      <div className="container_footer">
         <div className="row">
           <div className="sobre">
             <h3 className="footer-title">Sobre Nós</h3>
@@ -289,14 +289,17 @@ const App: React.FC = () => {
               <li><a className='perguntas' href="/perguntas">Perguntas Frequentes</a></li>
             </ul>
           </div>
-          <div className="col-md-7">
-            <h3 className="footer-title-redes">Redes Sociais</h3>
-            <ul className="social-icons">
-              <li><a href="https://www.facebook.com/lumaquartacolonia"><i className="fab fa-facebook-f"></i></a></li>
-              <li><a href="https://www.instagram.com/lumaquartacolonia/"><i className="fab fa-instagram"></i></a></li>
-            </ul>
-          </div>
         </div>
+          <div className='row'>
+            <div className="col-md-7">
+              <h3 className="footer-title-redes">Redes Sociais</h3>
+              <ul className="social-icons">
+                <li><a href="https://www.facebook.com/lumaquartacolonia"><i className="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://www.instagram.com/lumaquartacolonia/"><i className="fab fa-instagram"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        
 
         {/* Seção "Formas de Pagamento" */}
         <div className="row">
