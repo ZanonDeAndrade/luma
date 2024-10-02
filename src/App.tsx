@@ -26,7 +26,7 @@ import Visa from './Assets/Visa.png';
 import Elo from './Assets/Elo.png';
 import MasterCard from './Assets/Master.png';
 import Pix from './Assets/Pix.png';
-import seloSeguranca from './Assets/seloSeguranca.png';
+
 
 interface CartItem {
   itemIndex: number;
