@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif; /* Adicione uma fonte padrão */
+  font-family: Arial, sans-serif; /* Fonte padrão */
 }
 
 :root {
@@ -88,8 +88,6 @@ body {
 .icon-button span {
   margin-right: 5%;
 }
-
-
 
 /* Carrinho e Favoritos */
 .cart,
@@ -217,6 +215,67 @@ body {
   font-weight: bold;
 }
 
+/* Container de Produtos */
+.products-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os produtos quebrem linha */
+  justify-content: center; /* Centraliza os produtos horizontalmente */
+  gap: 20px; /* Espaçamento entre os produtos */
+  padding: 20px; /* Espaçamento interno */
+  max-width: 100%; /* Garante que o container ocupe toda a largura */
+  margin: 0 auto; /* Centraliza o container na página */
+}
+
+/* Estilos para os Produtos */
+.product-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center; /* Centraliza o conteúdo dentro do produto */
+  width: 250px; /* Largura fixa para cada produto */
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Efeito de sombra */
+}
+
+.product-item img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.product-item h4 {
+  font-size: 18px;
+  color: var(--color-gray);
+  margin-bottom: 10px;
+}
+
+.product-item p {
+  font-size: 16px;
+  color: var(--color-gray);
+}
+
+.product-item .price {
+  font-size: 20px;
+  color: var(--color-green);
+  font-weight: bold;
+}
+
+.product-item button {
+  background-color: var(--color-green);
+  color: var(--color-white);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.product-item button:hover {
+  background-color: var(--color-dark-green);
+}
 
 /* Rodapé */
 footer {
@@ -247,7 +306,7 @@ footer .col {
 footer .col h3 {
   font-size: 24px; /* Aumenta ainda mais o tamanho dos títulos */
   margin-bottom: 15px;
-  color: var(--cor-preta); /* Deixa o título mais visível */
+  color: var(--color-black); /* Deixa o título mais visível */
   font-weight: bold;
 }
 
@@ -285,33 +344,18 @@ footer i {
   margin-top: 10px;
 }
 
-/* Ajuste para telas menores */
-@media (max-width: 600px) {
-  footer .col h3 {
-    font-size: 22px; /* Mantém o título grande, mas ajusta para telas menores */
-  }
-}
-
 
 
 @media (max-width: 450px) {
-  .pesquisa {
-    width: 50%;
-    margin-left: auto;
+  .products-container {
+    flex-direction: column; /* Exibe os produtos em coluna para telas muito pequenas */
+    align-items: center; /* Centraliza os produtos em telas pequenas */
+    padding-left: 0; /* Remove qualquer padding adicional à esquerda */
+    padding-right: 0; /* Remove qualquer padding adicional à direita */
   }
 
-  .footer {
-    padding: 40px;
-    background-color: #dddee0;
-  }
 
-  .footer .col {
-    margin: 20px auto;
-    text-align: center;
-  }
-
-  .footer .social-icons {
-    justify-content: center;
-    margin-top: 15px;
+  .product-item {
+    width: 90%; /* Largura quase total da tela para dispositivos móveis */
   }
 }

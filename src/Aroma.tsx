@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
-import './Aroma.css'; // Verifique se o arquivo de estilos está correto e sendo importado corretamente
+import './Aroma.css'; // Certifique-se de que o caminho para o CSS está correto
 import Aroma1 from './Assets/Aroma1.jpeg';
 import Aroma2 from './Assets/Aroma2.jpeg';
 import Aroma3 from './Assets/Aroma3.jpeg';
@@ -15,6 +15,24 @@ interface AromaProps {
   toggleFavorite: (itemIndex: number) => void;
   favoriteItems: number[];
 }
+
+const SampleNextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div className="slick-arrow next" onClick={onClick}>
+      <i className="fas fa-chevron-right"></i>
+    </div>
+  );
+};
+
+const SamplePrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div className="slick-arrow prev" onClick={onClick}>
+      <i className="fas fa-chevron-left"></i>
+    </div>
+  );
+};
 
 const AromaTerapia: React.FC<AromaProps> = ({ addToCart, toggleFavorite, favoriteItems }) => {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
@@ -35,9 +53,11 @@ const AromaTerapia: React.FC<AromaProps> = ({ addToCart, toggleFavorite, favorit
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 768, // largura de tela até 768px (dispositivos móveis)
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -60,7 +80,6 @@ const AromaTerapia: React.FC<AromaProps> = ({ addToCart, toggleFavorite, favorit
     <div className="container">
       {notification && (
         <div className="notification">
-          <div className='notification'></div>
           {notification}
         </div>
       )}
