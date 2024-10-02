@@ -373,9 +373,6 @@ li span {
     height: 200%;
   }
 
-  .footer .row{
-    margin-top: -50%;
-  }
 
   .footer .row .sobre{
     margin-top: -215%;
@@ -424,25 +421,11 @@ li span {
     font-size: 120%;
   }
 
-  .col-md-13 {
-    width: 140%;
-    margin-left: -520%;
-    color: #333;
-    font-size: 140%;
-    margin-top: 850%;
-    margin-bottom: 15%;
-  }
-
-  .col-md-13 img {
-    width: 100%;
-    margin-left: -14%;
-    margin-top: 5%;
-  }
-
   .col-md-12_text-center{
-    margin-left: -1720%;
+    margin-left: -1480%;
     font-size: 80%;
-    margin-top: 1550%;    
+    margin-top: 1100%;    
+    margin-bottom: 15%;
   }
 
   

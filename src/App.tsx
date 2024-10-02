@@ -312,14 +312,6 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Seção "Segurança" */}
-        <div className="row">
-          <div className="col-md-13">
-            <h3 className="selo-seguranca">Segurança</h3>
-            <img src={seloSeguranca} alt="Selo de Segurança" />
-          </div>
-        </div>
-
         {/* Direitos reservados */}
         <div className="row">
           <div className="col-md-12_text-center">
