@@ -1,44 +1,46 @@
-.App {
-  text-align: center;
-  overflow-x: hidden;
-}
-
-*{
+/* Estilos Globais */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, sans-serif; /* Adicione uma fonte padrão */
 }
-
 
 :root {
-  --cor-verde: #24B677;
-  --cor-verdEscuro: #1d7902;
-  --cor-branca: #fff;
-  --cor-preta: #000;
+  --color-green: #24B677;
+  --color-dark-green: #1d7902;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-gray: #333;
 }
 
+/* Container Principal */
+.App {
+  text-align: center;
+  overflow-x: hidden;
+}
 
+/* Logo */
 .Logo img {
-  margin-left: -75%;
   width: 18%;
   margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto; /* Centraliza a logo horizontalmente */
 }
 
+/* Barra de Pesquisa */
 .pesquisa {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -5%;
-  margin-bottom: 5%;
+  margin: -5% auto 5%;
   width: 60%;
-  margin-left: 20%;
 }
 
 .pesquisa input {
@@ -52,13 +54,14 @@ body {
 .search-button {
   padding: 10px;
   border: 1px solid #ddd;
-  background-color: var(--cor-verdEscuro);
-  height: 40.8px;
-  color: white;
+  background-color: var(--color-dark-green);
+  height: 41px;
+  color: var(--color-white);
   border-radius: 0 4px 4px 0;
   cursor: pointer;
 }
 
+/* Ícones */
 .icons {
   display: flex;
   justify-content: flex-end;
@@ -73,10 +76,8 @@ body {
   border: none;
   cursor: pointer;
   margin: 0 2%;
-  margin-right: 2%;
-  margin-top: -5%;
   font-size: 16px;
-  color: var(--cor-verdEscuro);
+  color: var(--color-dark-green);
   font-weight: bold;
 }
 
@@ -90,106 +91,7 @@ body {
 
 
 
-/* Links do rodapé */
-footer a {
-  color: #333;
-  text-decoration: none;
-}
-
-
-
-/* Colunas do rodapé */
-footer .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Conteúdo da coluna */
-footer .col {
-  flex: 1;
-}
-
-/* Título da coluna */
-footer .col h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-/* Lista do rodapé */
-footer ul {
-  list-style: none;
-  padding: 0;
-}
-
-
-.footer {
-  padding: 20px;
-}
-
-.footer-title {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.payment-methods {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.payment-methods .pix{
-  width: 35px;
-}
-
-.payment-icon {
-  width: 50px;
-  height: auto;
-  margin: 0 10px;
-}
-
-
-.footer-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.payment-methods {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.payment-methods img {
-  width: 50px; /* Ajuste o tamanho conforme necessário */
-  height: auto;
-}
-
-
-.selo-seguranca {
-  width: 100px;
-  height: auto;
-  display: block;
-  margin-top: 10px;
-}
-
-
-/* Itens da lista do rodapé */
-footer li {
-  margin-bottom: 5px;
-}
-
-/* Ícones do rodapé */
-footer i {
-  margin-right: 5px;
-}
-
-/* Cart and Favorites styles */
+/* Carrinho e Favoritos */
 .cart,
 .favorites {
   position: fixed;
@@ -197,7 +99,7 @@ footer i {
   right: 0;
   width: 300px;
   height: 100%;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   transform: translateX(0);
@@ -230,7 +132,8 @@ footer i {
   cursor: pointer;
 }
 
-ul {
+.cart ul,
+.favorites ul {
   list-style: none;
   padding: 0;
   margin: 20px 0;
@@ -238,20 +141,23 @@ ul {
   overflow-y: auto;
 }
 
-li {
+.cart li,
+.favorites li {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ccc;
   padding: 10px 0;
 }
 
-li img {
+.cart li img,
+.favorites li img {
   width: 50px;
   height: 50px;
   margin-right: 10px;
 }
 
-li span {
+.cart li span,
+.favorites li span {
   flex-grow: 1;
   text-align: left;
 }
@@ -261,23 +167,22 @@ li span {
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: var(--cor-vermelho);
+  color: var(--color-red);
 }
 
 .checkout-button {
-  background-color: var(--cor-verde);
-  color: var(--cor-branca);
+  background-color: var(--color-green);
+  color: var(--color-white);
   border: none;
   padding: 10px;
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 2px 2px 5px var(--cor-preto);
   text-align: center;
-  margin-bottom: 15%;
-  box-shadow: 1px 1px 1px #000;
+  box-shadow: 2px 2px 5px var(--color-black);
 }
 
+/* Controle de Quantidade */
 .quantity {
   display: flex;
   align-items: center;
@@ -285,8 +190,8 @@ li span {
 
 .increment,
 .decrement {
-  background-color: var(--cor-verde);
-  color: var(--cor-branca);
+  background-color: var(--color-green);
+  color: var(--color-white);
   border: none;
   border-radius: 50%;
   width: 24px;
@@ -312,120 +217,101 @@ li span {
   font-weight: bold;
 }
 
+
+/* Rodapé */
+footer {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  color: var(--color-gray);
+}
+
+footer a {
+  color: var(--color-gray);
+  text-decoration: none;
+}
+
+footer .container {
+  display: flex;
+  flex-direction: column; /* Força as colunas a ficarem em uma única coluna para centralizar */
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center; /* Centraliza todo o texto dentro das colunas */
+}
+
+footer .col {
+  margin-bottom: 20px;
+}
+
+footer .col h3 {
+  font-size: 24px; /* Aumenta ainda mais o tamanho dos títulos */
+  margin-bottom: 15px;
+  color: var(--cor-preta); /* Deixa o título mais visível */
+  font-weight: bold;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer li {
+  margin-bottom: 5px;
+}
+
+footer i {
+  margin-right: 5px;
+}
+
+/* Métodos de Pagamento */
+.payment-methods {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 1.5rem;
+}
+
+.payment-methods img {
+  width: 50px;
+  height: auto;
+}
+
+.selo-seguranca {
+  width: 100px;
+  display: block;
+  margin-top: 10px;
+}
+
+/* Ajuste para telas menores */
 @media (max-width: 600px) {
-  .Logo img {
-    margin-top: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-  }
-
-  .pesquisa {
-    width: 80%;
-    margin-right: 15%;
-    margin-top: 5%;
-  }
-
-  .icons {
-    margin-right: -10%;
-    justify-content: center; /* Centraliza os ícones horizontalmente */
-  }
-
-  .icon-button {
-    margin: 0 5%; /* Ajusta a margem para centralizar os ícones */
-  }
-
-  .icon-button i {
-    font-size: 150%;
-  }
-
-  .icon-button span {
-    display: none; /* Esconde o texto para focar apenas no ícone */
+  footer .col h3 {
+    font-size: 22px; /* Mantém o título grande, mas ajusta para telas menores */
   }
 }
 
+
+
 @media (max-width: 450px) {
-
-    .icon-button i {
-    font-size: 100%;
-    margin-left: 3%;
-    margin-right: 10%;
-  }
-
-  .icon-button {
-    margin-left: 5%;
-  }
-
-  .icons{
-    margin-top: -8%;
-    margin-bottom: 15%;
-    margin-left: 55%;
-  }
-
   .pesquisa {
     width: 50%;
-    margin-left: 27%;
+    margin-left: auto;
   }
 
   .footer {
-    width: 100%;
+    padding: 40px;
     background-color: #dddee0;
-    height: 200%;
   }
 
-
-  .footer .row .sobre{
-    margin-top: -215%;
-    width: 200%;
-    display: flex;
+  .footer .col {
+    margin: 20px auto;
+    text-align: center;
   }
 
-  .footer .row .sobre h3{
-    width: 80%;
-    margin-left: 22%;
-    align-items: center;
+  .footer .social-icons {
     justify-content: center;
-    color: #333;
+    margin-top: 15px;
   }
-
-  .footer .row .sobre p{
-    margin-top: 15%;
-    margin-left: -79%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .footer .row .col-md-6{
-    margin-left: -115%;
-  }
-
-
-  .col-md-7 .footer-title-redes{
-    font-size: 140%;
-    color: #333;
-    margin-top: 34%;
-    margin-left: -115%;
-  }
-
- 
-  .col-md-7 .social-icons{
-    margin-left: -115%;
-  }
-
-
-  .col-md-12{
-    margin-left: -210%;
-    color: #333;
-    margin-top: 182%;
-    font-size: 120%;
-  }
-
-  .col-md-12_text-center{
-    margin-left: -1480%;
-    font-size: 80%;
-    margin-top: 1100%;    
-    margin-bottom: 15%;
-  }
-  }
-
+}
