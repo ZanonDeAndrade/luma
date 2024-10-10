@@ -23,7 +23,6 @@ body {
 /* Container Principal */
 .App {
   text-align: center;
-  overflow-x: hidden;
 }
 
 /* Logo */
@@ -383,7 +382,7 @@ footer i {
 
   .copyright{
     font-size: 80%;
-    margin-top: 1%;
+    margin-top: -3%;
   }
 
 }
