@@ -1,40 +1,38 @@
 const express = require('express');
 const mercadopago = require('mercadopago');
 
-// Configure Mercado Pago com o token de acesso
+const app = express();
+
+// Configurar o Mercado Pago com o access_token
 mercadopago.configurations.setAccessToken('APP_USR-8293133393523226-091709-14d69e19930fdf604cbaa6c9251e1ca4-1827935072');
 
-const app = express();
+// Middleware para processar JSON
 app.use(express.json());
 
-app.post('/create_preference', (req, res) => {
-  const { items } = req.body;
+// Rota de teste para pagamento
+app.post('/payment', async (req, res) => {
+    const { transactionAmount, description, paymentMethodId, payerEmail } = req.body;
 
-  const preference = {
-    items: items.map((item) => ({
-      title: item.title,
-      unit_price: item.unit_price,
-      quantity: item.quantity,
-    })),
-    back_urls: {
-      success: 'https://seusite.com/success',
-      failure: 'https://seusite.com/failure',
-      pending: 'https://seusite.com/pending',
-    },
-    auto_return: 'approved',
-  };
+    const paymentData = {
+        transaction_amount: transactionAmount,
+        description: description,
+        payment_method_id: paymentMethodId,
+        payer: {
+            email: payerEmail
+        }
+    };
 
-  mercadopago.preferences.create(preference)
-    .then((response) => {
-      res.json({
-        id: response.body.id,
-      });
-    })
-    .catch((error) => {
-      res.status(500).json({ error: error.message });
-    });
+    try {
+        const payment = await mercadopago.payment.save(paymentData);
+        res.status(200).json({ payment });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
+// Porta do servidor
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
