@@ -12,7 +12,7 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/carrinho" element={<Carrinho />} /> {/* Definindo a rota para Carrinho */}
+        <Route path="/carrinho" element={<Carrinho />} /> 
       </Routes>
     </Router>
   </React.StrictMode>

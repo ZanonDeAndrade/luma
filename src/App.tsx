@@ -47,19 +47,19 @@ const App: React.FC = () => {
   ];
 
   const decoracaoItems = [
-    { image: Decoracao1, description: 'Um elegante vaso de cerâmica que adiciona um toque sofisticado a qualquer ambiente. Perfeito para flores frescas ou artificiais.', nome: 'Vaso de Cerâmica', price: 80.00 },
-    { image: Decoracao2, description: 'Quadro decorativo com arte abstrata moderna, ideal para salas de estar ou escritórios. Feito com materiais de alta qualidade.', nome: 'Quadro Abstrato', price: 120.00 },
-    { image: Decoracao3, description: 'Uma luminária de mesa estilosa que proporciona uma iluminação suave e agradável. Perfeita para mesas de estudo ou cabeceiras.', nome: 'Luminária de Mesa', price: 150.00 },
-    { image: Decoracao4, description: 'Espelho decorativo com moldura dourada, ideal para adicionar um toque de glamour ao seu quarto ou sala de estar.', nome: 'Espelho Dourado', price: 200.00 },
+    { image: Decoracao1, description: 'Um elegante vaso de cerâmica que adiciona um toque sofisticado a qualquer ambiente.', nome: 'Vaso de Cerâmica', price: 80.00 },
+    { image: Decoracao2, description: 'Quadro decorativo com arte abstrata moderna.', nome: 'Quadro Abstrato', price: 120.00 },
+    { image: Decoracao3, description: 'Uma luminária de mesa estilosa.', nome: 'Luminária de Mesa', price: 150.00 },
+    { image: Decoracao4, description: 'Espelho decorativo com moldura dourada.', nome: 'Espelho Dourado', price: 200.00 },
   ];
 
   const lembrancasItems = [
-    { image: Lembranca1, description: 'Um elegante vaso de cerâmica que adiciona um toque sofisticado a qualquer ambiente. Perfeito para flores frescas ou artificiais.', nome: 'Vaso de Cerâmica', originalPrice: 'R$ 80,00', discountPrice: 'R$ 70,00' },
-    { image: Lembranca2, description: 'Quadro decorativo com arte abstrata moderna, ideal para salas de estar ou escritórios. Feito com materiais de alta qualidade.', nome: 'Quadro Abstrato', originalPrice: 'R$ 120,00', discountPrice: 'R$ 100,00' },
-    { image: Lembranca3, description: 'Uma luminária de mesa estilosa que proporciona uma iluminação suave e agradável. Perfeita para mesas de estudo ou cabeceiras.', nome: 'Luminária de Mesa', originalPrice: 'R$ 150,00', discountPrice: 'R$ 130,00' },
-    { image: Lembranca4, description: 'Espelho decorativo com moldura dourada, ideal para adicionar um toque de glamour ao seu quarto ou sala de estar.', nome: 'Espelho Dourado', originalPrice: 'R$ 200,00', discountPrice: 'R$ 180,00' },
-    { image: Lembranca5, description: 'Uma luminária de mesa estilosa que proporciona uma iluminação suave e agradável. Perfeita para mesas de estudo ou cabeceiras.', nome: 'Luminária de Mesa', originalPrice: 'R$ 150,00', discountPrice: 'R$ 130,00' },
-    { image: Lembranca6, description: 'Espelho decorativo com moldura dourada, ideal para adicionar um toque de glamour ao seu quarto ou sala de estar.', nome: 'Espelho Dourado', originalPrice: 'R$ 200,00', discountPrice: 'R$ 180,00' },
+    { image: Lembranca1, description: 'Descrição da Lembrança 1', nome: 'Lembrança 1', price: 70.00 },
+    { image: Lembranca2, description: 'Descrição da Lembrança 2', nome: 'Lembrança 2', price: 100.00 },
+    { image: Lembranca3, description: 'Descrição da Lembrança 3', nome: 'Lembrança 3', price: 130.00 },
+    { image: Lembranca4, description: 'Descrição da Lembrança 4', nome: 'Lembrança 4', price: 180.00 },
+    { image: Lembranca5, description: 'Descrição da Lembrança 5', nome: 'Lembrança 5', price: 70.00 },
+    { image: Lembranca6, description: 'Descrição da Lembrança 6', nome : 'Lembrança 6', price: 100.00 },
   ];
 
   const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
@@ -119,7 +119,7 @@ const App: React.FC = () => {
   const decrementQuantity = (itemIndex: number, category: string) => {
     setCartItems(prevCartItems =>
       prevCartItems.map(item =>
-        item.itemIndex === itemIndex && item.category === category && item.quantity > 1
+        item.itemIndex === itemIndex && item.category === category && item .quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
@@ -150,7 +150,7 @@ const App: React.FC = () => {
       localStorage.setItem('favoriteItems', JSON.stringify(newFavoriteItems));
       return newFavoriteItems;
     });
- };
+  };
 
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -163,9 +163,33 @@ const App: React.FC = () => {
   // Função para calcular o total do pedido
   const calculateTotal = () => {
     return cartItems.reduce((total, cartItem) => {
-      const item = cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex] : decoracaoItems[cartItem.itemIndex];
+      const item = cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex] : cartItem.category === 'decoracao' ? decoracaoItems[cartItem.itemIndex] : lembrancasItems[cartItem.itemIndex];
       return total + item.price * cartItem.quantity;
     }, 0).toFixed(2);
+  };
+
+  const handleCheckout = () => {
+    // Redirecionar para o Mercado Pago
+    const total = calculateTotal();
+    const items = cartItems.map((cartItem) => {
+      const item = cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex] : cartItem.category === 'decoracao' ? decoracaoItems[cartItem.itemIndex] : lembrancasItems[cartItem.itemIndex];
+      return {
+        title: item.nome,
+        quantity: cartItem.quantity,
+        unit_price: item.price,
+      };
+    });
+
+    const paymentData = {
+      items,
+      total,
+    };
+
+    // Enviar dados de pagamento para o Mercado Pago
+    // ...
+
+    // Redirecionar para o Mercado Pago
+    navigate('/checkout', { state: paymentData });
   };
 
   return (
@@ -209,7 +233,7 @@ const App: React.FC = () => {
           {cartItems.length === 0 ? (
             <p>Sua sacola está vazia</p>
           ) : (
-            <>
+ <>
               <ul>
                 {cartItems.map((cartItem, idx) => {
                   const item = cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex] : cartItem.category === 'decoracao' ? decoracaoItems[cartItem.itemIndex] : lembrancasItems[cartItem.itemIndex];
@@ -236,7 +260,7 @@ const App: React.FC = () => {
               <div className="total">
                 <h3>Total: R$ {calculateTotal()}</h3>
               </div>
-              <button className="checkout-button" onClick={() => navigate('/carrinho')}>Finalizar Compra</button> {/* Redirecionando para a página do carrinho */}
+              <button className="checkout-button" onClick={handleCheckout}>Finalizar Compra</button> {/* Redirecionando para o Mercado Pago */}
             </>
           )}
         </div>
@@ -253,7 +277,7 @@ const App: React.FC = () => {
           ) : (
             <ul>
               {favoriteItems.map((itemIndex, idx) => {
-                const item = itemIndex < aromaItems.length ? aromaItems[itemIndex] : itemIndex < aromaItems.length + decoracaoItems .length ? decoracaoItems[itemIndex - aromaItems.length] : lembrancasItems[itemIndex - aromaItems.length - decoracaoItems.length];
+                const item = itemIndex < aromaItems.length ? aromaItems[itemIndex] : itemIndex < aromaItems.length + decoracaoItems.length ? decoracaoItems[itemIndex - aromaItems.length] : lembrancasItems[itemIndex - aromaItems.length - decoracaoItems.length];
                 return (
                   <li key={idx}>
                     {item ? (
