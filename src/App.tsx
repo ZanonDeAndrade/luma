@@ -26,7 +26,7 @@ import Visa from './Assets/Visa.png';
 import Elo from './Assets/Elo.png';
 import MasterCard from './Assets/Master.png';
 import Pix from './Assets/Pix.png';
-
+import { useNavigate } from 'react-router-dom'; // Importando useNavigate
 
 interface CartItem {
   itemIndex: number;
@@ -35,6 +35,8 @@ interface CartItem {
 }
 
 const App: React.FC = () => {
+  const navigate = useNavigate(); // Inicializando useNavigate
+
   const aromaItems = [
     { image: Aroma1, description: 'Descrição do Aroma 1', nome: 'Home Spray Okê Arô', price: 25.00 },
     { image: Aroma2, description: 'Descrição do Aroma 2', nome: 'Home Spray Odoyá SPA', price: 30.00 },
@@ -148,7 +150,7 @@ const App: React.FC = () => {
       localStorage.setItem('favoriteItems', JSON.stringify(newFavoriteItems));
       return newFavoriteItems;
     });
-  };
+ };
 
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -172,21 +174,21 @@ const App: React.FC = () => {
         <div className="Logo">
           <img src={logo} alt="Logo" />
         </div>
-          <div className="icons">
-            <button className="icon-button" onClick={toggleFavoritesVisibility}>
-              <i className="fas fa-heart"></i>
-              <span>Favoritos</span>
-              <i className="fas fa-chevron-down"></i>
-              {favoriteItems.length > 0 && <span className="favorites-count">{favoriteItems.length}</span>}
-            </button>
-            <button className="icon-button" onClick={toggleCartVisibility}>
-              <i className="fas fa-shopping-bag"></i>
-              <span>Sacola</span>
-              <i className="fas fa-chevron-down"></i>
-              {cartItems.length > 0 && <span className="cart-count">{cartItems.length}</span>}
-            </button>
-          </div>
-          <div className="pesquisa">
+        <div className="icons">
+          <button className="icon-button" onClick={toggleFavoritesVisibility}>
+            <i className="fas fa-heart"></i>
+            <span>Favoritos</span>
+            <i className="fas fa-chevron-down"></i>
+            {favoriteItems.length > 0 && <span className="favorites-count">{favoriteItems.length}</span>}
+          </button>
+          <button className="icon-button" onClick={toggleCartVisibility}>
+            <i className="fas fa-shopping-bag"></i>
+            <span>Sacola</span>
+            <i className="fas fa-chevron-down"></i>
+            {cartItems.length > 0 && <span className="cart-count">{cartItems.length}</span>}
+          </button>
+        </div>
+        <div className="pesquisa">
           <input type="text" placeholder="O que você procura hoje?" />
           <button className="search-button">
             <i className="fas fa-search"></i>
@@ -234,9 +236,9 @@ const App: React.FC = () => {
               <div className="total">
                 <h3>Total: R$ {calculateTotal()}</h3>
               </div>
+              <button className="checkout-button" onClick={() => navigate('/carrinho')}>Finalizar Compra</button> {/* Redirecionando para a página do carrinho */}
             </>
           )}
-          <button className="checkout-button">Finalizar Compra</button>
         </div>
       )}
 
@@ -251,7 +253,7 @@ const App: React.FC = () => {
           ) : (
             <ul>
               {favoriteItems.map((itemIndex, idx) => {
-                const item = itemIndex < aromaItems.length ? aromaItems[itemIndex] : itemIndex < aromaItems.length + decoracaoItems.length ? decoracaoItems[itemIndex - aromaItems.length] : lembrancasItems[itemIndex - aromaItems.length - decoracaoItems.length];
+                const item = itemIndex < aromaItems.length ? aromaItems[itemIndex] : itemIndex < aromaItems.length + decoracaoItems .length ? decoracaoItems[itemIndex - aromaItems.length] : lembrancasItems[itemIndex - aromaItems.length - decoracaoItems.length];
                 return (
                   <li key={idx}>
                     {item ? (
@@ -271,57 +273,55 @@ const App: React.FC = () => {
         </div>
       )}
 
-    <footer className="footer">
-      <div className="container">
-        <div className="row">
-          <div className="sobre">
-            <h3 className="footer-title">Sobre Nós</h3>
-            <p>Somos apaixonados por criar produtos que inspiram e trazem alegria para o seu dia a dia.</p>
+      <footer className="footer">
+        <div className="container">
+          <div className="row">
+            <div className="sobre">
+              <h3 className="footer-title">Sobre Nós</h3>
+              <p>Somos apaixonados por criar produtos que inspiram e trazem alegria para o seu dia a dia.</p>
+            </div>
           </div>
-        </div>
 
-        <div className="row">
-          <div className="col-md-6">
-            <h3 className="footer-title">Atendimento</h3>
-            <ul>
-              <li><a href="/central">Central de Atendimento</a></li>
-              <li><a href="/fale">Fale Conosco</a></li>
-              <li><a className='perguntas' href="/perguntas">Perguntas Frequentes</a></li>
-            </ul>
+          <div className="row">
+            <div className="col-md-6">
+              <h3 className="footer-title">Atendimento</h3>
+              <ul>
+                <li><a href="/central">Central de Atendimento</a></li>
+                <li><a href="/fale">Fale Conosco</a></li>
+                <li><a className='perguntas' href="/perguntas">Perguntas Frequentes</a></li>
+              </ul>
+            </div>
+            <div className="col-md-7">
+              <h3 className="footer-title-redes">Redes Sociais</h3>
+              <ul className="social-icons">
+                <li><a href="https://www.facebook.com/lumaquartacolonia"><i className="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://www.instagram.com/lumaquartacolonia/"><i className="fab fa-instagram"></i></a></li>
+              </ul>
+            </div>
           </div>
-          <div className="col-md-7">
-            <h3 className="footer-title-redes">Redes Sociais</h3>
-            <ul className="social-icons">
-              <li><a href="https://www.facebook.com/lumaquartacolonia"><i className="fab fa-facebook-f"></i></a></li>
-              <li><a href="https://www.instagram.com/lumaquartacolonia/"><i className="fab fa-instagram"></i></a></li>
-            </ul>
-          </div>
-        </div>
 
-        {/* Seção "Formas de Pagamento" */}
-        <div className="row">
-          <div className="col-md-12">
-            <h3 className="footer-title-pagamento">Formas de Pagamento</h3>
-            <div className="payment-methods">
-              <img src={Visa} alt="Visa" />
-              <img src={MasterCard} alt="MasterCard" />
-              <img src={Elo} alt="Elo" />
-              <img src={Boleto} alt="Boleto" />
-              <img className="pix" src={Pix} alt="Pix" />
+          {/* Seção "Formas de Pagamento" */}
+          <div className="row">
+            <div className="col-md-12">
+              <h3 className="footer-title-pagamento">Formas de Pagamento</h3>
+              <div className="payment-methods">
+                <img src={Visa} alt="Visa" />
+                <img src={MasterCard} alt="MasterCard" />
+                <img src={Elo} alt="Elo" />
+                <img src={Boleto} alt="Boleto" />
+                <img className="pix" src={Pix} alt="Pix" />
+              </div>
+            </div>
+          </div>
+
+          {/* Direitos reservados */}
+          <div className="row">
+            <div className="col-md-12_text-center">
+              <p className="copyright"> 2024 Luma Quarta Colônia. Todos os direitos reservados.</p>
             </div>
           </div>
         </div>
-
-        {/* Direitos reservados */}
-        <div className="row">
-          <div className="col-md-12_text-center">
-            <p className="copyright">© 2024 Luma Quarta Colônia. Todos os direitos reservados.</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-
+      </footer>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
-import './Aroma.css'; // Certifique-se de que o caminho para o CSS está correto
+import './Aroma.css'; 
 import Aroma1 from './Assets/Aroma1.jpeg';
 import Aroma2 from './Assets/Aroma2.jpeg';
 import Aroma3 from './Assets/Aroma3.jpeg';
