@@ -185,11 +185,8 @@ const App: React.FC = () => {
       total,
     };
 
-    // Enviar dados de pagamento para o Mercado Pago
-    // ...
-
-    // Redirecionar para o Mercado Pago
-    navigate('/checkout', { state: paymentData });
+    
+    navigate('/Checkout', { state: paymentData });
   };
 
   return (

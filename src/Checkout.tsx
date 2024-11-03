@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const Carrinho: React.FC = () => {
+const Checkout: React.FC = () => {
   const location = useLocation();
   const { state } = location; // Obtendo os dados passados
 
@@ -50,4 +50,4 @@ const Carrinho: React.FC = () => {
   );
 };
 
-export default Carrinho;
+export default Checkout;
