@@ -38,23 +38,23 @@ const App: React.FC = () => {
   const navigate = useNavigate(); // Inicializando useNavigate
 
   const aromaItems = [
-    { image: Aroma1, description: 'Descrição do Aroma 1', nome: 'Home Spray Okê Arô', price: 25.00 },
-    { image: Aroma2, description: 'Descrição do Aroma 2', nome: 'Home Spray Odoyá SPA', price: 30.00 },
-    { image: Aroma3, description: 'Descrição do Aroma 3', nome: 'Home Spray Limão do Vale', price: 20.00 },
-    { image: Aroma4, description: 'Descrição do Aroma 4', nome: 'Home Spray Menta', price: 22.50 },
-    { image: Aroma5, description: 'Descrição do Aroma 5', nome: 'Home Spray Illumina', price: 27.00 },
-    { image: Aroma6, description: 'Descrição do Aroma 6', nome: 'Home Spray Dandara', price: 22.50 },
+    { image: Aroma1, description: 'Imagine-se em uma floresta amazônica, com a brisa tropical acariciando sua pele e o aroma da floresta inundando o ar. Inspirado na majestade da floresta amazônica, o Okê Arô é a maneira perfeita de começar o dia com energia e bem-estar. Sua saída aromática é refrescante, com notas verdes e cereja.', nome: 'Home Spray Okê Arô', price: 29.90 },
+    { image: Aroma2, description: 'Poseidon, o Deus dos mares, em seu Home Spray de 100ml, vem sendo representado por um aroma fresco como o cheiro da chuva. Remete ao aconchego e sua indicação é para o uso em dormitórios, devido ao seu forte poder de higienização mental. Conheça a coleção Divinus e descubra o aroma perfeito para você!', nome: 'Home Spray Poseidon', price: 29.90 },
+    { image: Aroma3, description: 'Conhecido por suas propriedades revitalizantes e estimulantes. Ele é capaz de despertar os sentidos, melhorar o humor e aumentar a produtividade. O nosso Home Spray Limão do Vale é feito com ingredientes 100% naturais e de alta qualidade. Ele contém notas de limão siciliano, laranja doce, bergamota e capim-limão.', nome: 'Home Spray Limão do Vale', price: 29.90 },
+    { image: Aroma4, description: 'Rico em mentol, um composto que tem efeitos neuroativos, como: Melhorar o foco e a concentração; Reduzir o estresse e a ansiedade, e até mesmo aliviar a dor. O nosso Home Spray de Menta é feito com óleos essenciais de menta, cânfora e lavanda, que proporcionam um aroma agradável e envolvente, com efeitos benéficos para a saúde e o bem-estar.', nome: 'Home Spray Menta', price: 29.90  },
+    { image: Aroma5, description: 'Um aroma acolhedor e inspirador que expressa toda a força e amor de uma mãe.', nome: 'Home Spray Illumina', price: 32.90 },
+    { image: Aroma6, description: 'Traga a energia vibrante da Dandara para o seu lar! Um aroma cítrico e frutado, com a doçura da baunilha com folhas de ouro. Composto por óleos essenciais cuidadosamente selecionados, o Home Spray Dandara é perfeito para quem busca um ambiente alegre e revigorante e sentir uma sensação de bem-estar e positividade.', nome: 'Home Spray Dandara', price: 34.90 },
   ];
 
   const decoracaoItems = [
-    { image: Decoracao1, description: 'Um elegante vaso de cerâmica que adiciona um toque sofisticado a qualquer ambiente.', nome: 'Vaso de Cerâmica', price: 80.00 },
+    { image: Decoracao1, description: 'Com o adorno de mesa da Oração do Pai Nosso, você pode elevar seus momentos de fé e criar um ambiente único e inspirador. ✨', nome: 'Adorno Oração Pai Nosso', price: 19.90},
     { image: Decoracao2, description: 'Quadro decorativo com arte abstrata moderna.', nome: 'Quadro Abstrato', price: 120.00 },
     { image: Decoracao3, description: 'Uma luminária de mesa estilosa.', nome: 'Luminária de Mesa', price: 150.00 },
-    { image: Decoracao4, description: 'Espelho decorativo com moldura dourada.', nome: 'Espelho Dourado', price: 200.00 },
+    { image: Decoracao4, description: 'Muito além de tintas, colas, pérolas e guipir… É customizar nossa Mãezinha Nossa Senhora Aparecida. Que alegria Deus me permitir levar a fé para muitos lares através de minhas mãos, de minha arte!', nome: 'Imagem Nossa Senhora', price: 79.90},
   ];
 
   const lembrancasItems = [
-    { image: Lembranca1, description: 'Descrição da Lembrança 1', nome: 'Lembrança 1', price: 70.00 },
+    { image: Lembranca1, description: 'A essência da luz materna é a capacidade de amar sem limites, de doar tudo de si sem esperar nada em troca. Presenteie a mulher que mais ilumina sua vida, com a vela aromática da Luma.', nome: 'Vela Aromática Illumina', price: 39.90 },
     { image: Lembranca2, description: 'Descrição da Lembrança 2', nome: 'Lembrança 2', price: 100.00 },
     { image: Lembranca3, description: 'Descrição da Lembrança 3', nome: 'Lembrança 3', price: 130.00 },
     { image: Lembranca4, description: 'Descrição da Lembrança 4', nome: 'Lembrança 4', price: 180.00 },

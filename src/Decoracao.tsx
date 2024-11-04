@@ -13,15 +13,33 @@ interface DecoracaoProps {
   favoriteItems: number[];
 }
 
+const SampleNextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div className="slick-arrow next" onClick={onClick}>
+      <i className="fas fa-chevron-right"></i>
+    </div>
+  );
+};
+
+const SamplePrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div className="slick-arrow prev" onClick={onClick}>
+      <i className="fas fa-chevron-left"></i>
+    </div>
+  );
+};
+
 const Decoracao: React.FC<DecoracaoProps> = ({ addToCart, toggleFavorite, favoriteItems }) => {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
 
   const items = [
-    { image: Decoracao1, description: 'Um elegante vaso de cerâmica que adiciona um toque sofisticado a qualquer ambiente. Perfeito para flores frescas ou artificiais.', nome: 'Vaso de Cerâmica', originalPrice: 'R$ 80,00', discountPrice: 'R$ 70,00' },
+    { image: Decoracao1, description: 'Com o adorno de mesa da Oração do Pai Nosso, você pode elevar seus momentos de fé e criar um ambiente único e inspirador. ✨', nome: 'Adorno Oração Pai Nosso ', originalPrice: 'R$ 25,00', discountPrice: 'R$ 19,90' },
     { image: Decoracao2, description: 'Quadro decorativo com arte abstrata moderna, ideal para salas de estar ou escritórios. Feito com materiais de alta qualidade.', nome: 'Quadro Abstrato', originalPrice: 'R$ 120,00', discountPrice: 'R$ 100,00' },
     { image: Decoracao3, description: 'Uma luminária de mesa estilosa que proporciona uma iluminação suave e agradável. Perfeita para mesas de estudo ou cabeceiras.', nome: 'Luminária de Mesa', originalPrice: 'R$ 150,00', discountPrice: 'R$ 130,00' },
-    { image: Decoracao4, description: 'Espelho decorativo com moldura dourada, ideal para adicionar um toque de glamour ao seu quarto ou sala de estar.', nome: 'Espelho Dourado', originalPrice: 'R$ 200,00', discountPrice: 'R$ 180,00' },
+    { image: Decoracao4, description: 'Muito além de tintas, colas, pérolas e guipir… É customizar nossa Mãezinha Nossa Senhora Aparecida. Que alegria Deus me permitir levar a fé para muitos lares através de minhas mãos, de minha arte!', nome: 'Imagem Nossa Senhora', originalPrice: 'R$ 99,90', discountPrice: 'R$ 79,90' },
   ];
 
   const settings = {
@@ -30,9 +48,11 @@ const Decoracao: React.FC<DecoracaoProps> = ({ addToCart, toggleFavorite, favori
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 768, // largura de tela até 768px (dispositivos móveis)
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

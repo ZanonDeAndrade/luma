@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Importando o Router
-import './index.css';
 import App from './App';
 import Checkout from './Checkout'; // Importando o componente Checkout
 import reportWebVitals from './reportWebVitals';
