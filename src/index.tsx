@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Importando o Router
 import './index.css';
 import App from './App';
-import Carrinho from './Checkout'; // Importando o componente Carrinho
+import Checkout from './Checkout'; // Importando o componente Checkout
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
@@ -12,7 +12,7 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/carrinho" element={<Carrinho />} /> 
+        <Route path="/checkout" element={<Checkout />} /> {/* Corrigido para /checkout */}
       </Routes>
     </Router>
   </React.StrictMode>

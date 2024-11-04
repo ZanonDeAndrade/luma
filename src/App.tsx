@@ -59,10 +59,11 @@ const App: React.FC = () => {
     { image: Lembranca3, description: 'Descrição da Lembrança 3', nome: 'Lembrança 3', price: 130.00 },
     { image: Lembranca4, description: 'Descrição da Lembrança 4', nome: 'Lembrança 4', price: 180.00 },
     { image: Lembranca5, description: 'Descrição da Lembrança 5', nome: 'Lembrança 5', price: 70.00 },
-    { image: Lembranca6, description: 'Descrição da Lembrança 6', nome : 'Lembrança 6', price: 100.00 },
+    { image: Lembranca6, description: 'Descrição da Lembrança 6', nome: 'Lembrança 6', price: 100.00 },
   ];
 
   const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
+
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
     const savedCartItems = localStorage.getItem('cartItems');
     return savedCartItems ? JSON.parse(savedCartItems) : [];
@@ -89,11 +90,11 @@ const App: React.FC = () => {
   };
 
   const addToCart = (itemIndex: number, category: string) => {
-    setCartItems(prevCartItems => {
-      const itemInCart = prevCartItems.find(item => item.itemIndex === itemIndex && item.category === category);
+    setCartItems((prevCartItems) => {
+      const itemInCart = prevCartItems.find((item) => item.itemIndex === itemIndex && item.category === category);
       let newCartItems;
       if (itemInCart) {
-        newCartItems = prevCartItems.map(item =>
+        newCartItems = prevCartItems.map((item) =>
           item.itemIndex === itemIndex && item.category === category
             ? { ...item, quantity: item.quantity + 1 }
             : item
@@ -107,8 +108,8 @@ const App: React.FC = () => {
   };
 
   const incrementQuantity = (itemIndex: number, category: string) => {
-    setCartItems(prevCartItems =>
-      prevCartItems.map(item =>
+    setCartItems((prevCartItems) =>
+      prevCartItems.map((item) =>
         item.itemIndex === itemIndex && item.category === category
           ? { ...item, quantity: item.quantity + 1 }
           : item
@@ -117,9 +118,9 @@ const App: React.FC = () => {
   };
 
   const decrementQuantity = (itemIndex: number, category: string) => {
-    setCartItems(prevCartItems =>
-      prevCartItems.map(item =>
-        item.itemIndex === itemIndex && item.category === category && item .quantity > 1
+    setCartItems((prevCartItems) =>
+      prevCartItems.map((item) =>
+        item.itemIndex === itemIndex && item.category === category && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
@@ -127,9 +128,9 @@ const App: React.FC = () => {
   };
 
   const toggleFavorite = (itemIndex: number) => {
-    setFavoriteItems(prevFavoriteItems => {
+    setFavoriteItems((prevFavoriteItems) => {
       const newFavoriteItems = prevFavoriteItems.includes(itemIndex)
-        ? prevFavoriteItems.filter(favIndex => favIndex !== itemIndex)
+        ? prevFavoriteItems.filter((favIndex) => favIndex !== itemIndex)
         : [...prevFavoriteItems, itemIndex];
       localStorage.setItem('favoriteItems', JSON.stringify(newFavoriteItems));
       return newFavoriteItems;
@@ -137,56 +138,53 @@ const App: React.FC = () => {
   };
 
   const removeFromCart = (itemIndex: number, category: string) => {
-    setCartItems(prevCartItems => {
-      const newCartItems = prevCartItems.filter(item => !(item.itemIndex === itemIndex && item.category === category));
+    setCartItems((prevCartItems) => {
+      const newCartItems = prevCartItems.filter((item) => !(item.itemIndex === itemIndex && item.category === category));
       localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       return newCartItems;
     });
   };
 
   const removeFromFavorites = (index: number) => {
-    setFavoriteItems(prevFavoriteItems => {
+    setFavoriteItems((prevFavoriteItems) => {
       const newFavoriteItems = prevFavoriteItems.filter((_, i) => i !== index);
       localStorage.setItem('favoriteItems', JSON.stringify(newFavoriteItems));
       return newFavoriteItems;
     });
   };
 
-  useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
-
-  useEffect(() => {
-    localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
-  }, [favoriteItems]);
-
-  // Função para calcular o total do pedido
-  const calculateTotal = () => {
-    return cartItems.reduce((total, cartItem) => {
-      const item = cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex] : cartItem.category === 'decoracao' ? decoracaoItems[cartItem.itemIndex] : lembrancasItems[cartItem.itemIndex];
-      return total + item.price * cartItem.quantity;
-    }, 0).toFixed(2);
+  const calculateTotal = (): string => {
+    let total = 0;
+    cartItems.forEach((cartItem) => {
+      if (cartItem.category === 'aroma') {
+        total += aromaItems[cartItem.itemIndex].price * cartItem.quantity;
+      } else if (cartItem.category === 'decoracao') {
+        total += decoracaoItems[cartItem.itemIndex].price * cartItem.quantity;
+      } else {
+        total += lembrancasItems[cartItem.itemIndex].price * cartItem.quantity;
+      }
+    });
+    return total.toFixed(2);
   };
 
   const handleCheckout = () => {
-    // Redirecionar para o Mercado Pago
-    const total = calculateTotal();
-    const items = cartItems.map((cartItem) => {
-      const item = cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex] : cartItem.category === 'decoracao' ? decoracaoItems[cartItem.itemIndex] : lembrancasItems[cartItem.itemIndex];
-      return {
-        title: item.nome,
-        quantity: cartItem.quantity,
-        unit_price: item.price,
-      };
-    });
+    if (cartItems.length === 0) {
+      alert("Seu carrinho está vazio. Adicione itens ao carrinho antes de finalizar a compra.");
+      return; // Não prosseguir se o carrinho estiver vazio
+    }
 
-    const paymentData = {
-      items,
-      total,
-    };
+    const total = parseFloat(calculateTotal()); // Certifique-se de que o total é um número
+    const items = cartItems.map((cartItem) => ({
+      title: cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex].nome :
+             cartItem.category === 'decoracao ' ? decoracaoItems[cartItem.itemIndex].nome :
+             lembrancasItems[cartItem.itemIndex].nome,
+      quantity: cartItem.quantity,
+      unit_price: cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex].price :
+                  cartItem.category === 'decoracao' ? decoracaoItems[cartItem.itemIndex].price :
+                  lembrancasItems[cartItem.itemIndex].price,
+    }));
 
-    
-    navigate('/Checkout', { state: paymentData });
+    navigate('/Checkout', { state: { items, total } });
   };
 
   return (
@@ -230,9 +228,9 @@ const App: React.FC = () => {
           {cartItems.length === 0 ? (
             <p>Sua sacola está vazia</p>
           ) : (
- <>
+            <>
               <ul>
-                {cartItems.map((cartItem, idx) => {
+                {cartItems.map((cartItem, idx ) => {
                   const item = cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex] : cartItem.category === 'decoracao' ? decoracaoItems[cartItem.itemIndex] : lembrancasItems[cartItem.itemIndex];
                   return (
                     <li key={idx}>
@@ -257,7 +255,7 @@ const App: React.FC = () => {
               <div className="total">
                 <h3>Total: R$ {calculateTotal()}</h3>
               </div>
-              <button className="checkout-button" onClick={handleCheckout}>Finalizar Compra</button> {/* Redirecionando para o Mercado Pago */}
+              <button className='checkout-button' onClick={handleCheckout}>Finalizar Compra</button>
             </>
           )}
         </div>
@@ -337,7 +335,7 @@ const App: React.FC = () => {
 
           {/* Direitos reservados */}
           <div className="row">
-            <div className="col-md-12_text-center">
+            <div className="col-md -12_text-center">
               <p className="copyright"> 2024 Luma Quarta Colônia. Todos os direitos reservados.</p>
             </div>
           </div>

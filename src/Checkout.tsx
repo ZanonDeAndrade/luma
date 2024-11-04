@@ -1,49 +1,75 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
+
+interface CartItem {
+  title: string;
+  quantity: number;
+  unit_price: number;
+}
+
+interface CartState {
+  items: CartItem[];
+  total: number;
+}
 
 const Checkout: React.FC = () => {
   const location = useLocation();
-  const { state } = location; // Obtendo os dados passados
+  const { state } = location;
 
-  // Verifica se os dados de pagamento estão disponíveis
-  if (!state) {
+  // Log para depuração
+  console.log('Estado recebido:', state);
+
+  // Verifica se o estado é válido
+  if (!state || !Array.isArray(state.items) || typeof state.total !== 'number') {
     return <h2>Não há itens no carrinho.</h2>;
   }
 
-  const { items, total } = state;
+  // Desestrutura o estado
+  const { items, total } = state as CartState;
 
-  // Configuração do Mercado Pago
-  const publicKey = 'APP_USR-9b2ad05c-d94d-4b3e-823d-b44b381ee0a8'; // Substitua pela sua Public Key do Mercado Pago
-
-  // Função para processar o pagamento
   const handlePayment = async () => {
-    // Chame a API do seu servidor para criar uma preferência de pagamento
-    const response = await fetch('http://localhost:3001/create_preference', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ items }),
-    });
-    const data = await response.json();
+    try {
+      const response = await fetch('http://127.0.0.1:5000/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          items: items.map((item: CartItem) => ({
+            title: item.title,
+            quantity: item.quantity,
+            unit_price: item.unit_price,
+          })),
+          total, // Enviando o total para o backend
+        }),
+      });
 
-    // Redirecionar para o pagamento
-    if (data.init_point) {
-      window.location.href = data.init_point; // Redireciona para o Mercado Pago
+      const data = await response.json();
+
+      if (data.link_pagamento) {
+        window.location.href = data.link_pagamento; // Redireciona para o link de pagamento
+      } else {
+        console.error('Link de pagamento não encontrado na resposta.', data);
+      }
+    } catch (error) {
+      console.error('Erro ao iniciar o pagamento:', error);
     }
   };
-
 
   return (
     <div>
       <h2>Carrinho de Compras</h2>
-      <ul>
-        {items.map((item: any, index: number) => (
-          <li key={index}>
-            {item.title} - Quantidade: {item.quantity} - Preço Unitário: R$ {item.unit_price.toFixed(2)}
-          </li>
-        ))}
-      </ul>
+      {items.length === 0 ? (
+        <p>Seu carrinho está vazio.</p>
+      ) : (
+        <ul>
+          {items.map((item: CartItem, index: number) => (
+            <li key={index}>
+              {item.title} - Quantidade: {item.quantity} - Preço Unitário: R$ {item.unit_price.toFixed(2)}
+            </li>
+          ))}
+        </ul>
+      )}
       <h3>Total: R$ {total.toFixed(2)}</h3>
       <button onClick={handlePayment}>Finalizar Compra</button>
     </div>
