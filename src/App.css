@@ -41,6 +41,7 @@ body {
   align-items: center;
   margin: -5% auto 5%;
   width: 60%;
+  margin-top: 5%;
 }
 
 .pesquisa input {
@@ -66,7 +67,6 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-left: 10%;
 }
 
 .icon-button {
@@ -75,7 +75,8 @@ body {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  margin: 0 2%;
+  margin: 0 13.5%;
+  margin-top: 3%;
   font-size: 16px;
   color: var(--color-dark-green);
   font-weight: bold;

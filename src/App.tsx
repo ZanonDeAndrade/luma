@@ -172,20 +172,25 @@ const App: React.FC = () => {
       alert("Seu carrinho está vazio. Adicione itens ao carrinho antes de finalizar a compra.");
       return; // Não prosseguir se o carrinho estiver vazio
     }
-
+  
     const total = parseFloat(calculateTotal()); // Certifique-se de que o total é um número
-    const items = cartItems.map((cartItem) => ({
-      title: cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex].nome :
-             cartItem.category === 'decoracao ' ? decoracaoItems[cartItem.itemIndex].nome :
-             lembrancasItems[cartItem.itemIndex].nome,
-      quantity: cartItem.quantity,
-      unit_price: cartItem.category === 'aroma' ? aromaItems[cartItem.itemIndex].price :
-                  cartItem.category === 'decoracao' ? decoracaoItems[cartItem.itemIndex].price :
-                  lembrancasItems[cartItem.itemIndex].price,
-    }));
-
+    const items = cartItems.map((cartItem) => {
+      const categoryItems = cartItem.category === 'aroma' ? aromaItems :
+                            cartItem.category === 'decoracao' ? decoracaoItems :
+                            lembrancasItems;
+      const currentItem = categoryItems[cartItem.itemIndex];
+      
+      return {
+        title: currentItem.nome,
+        quantity: cartItem.quantity,
+        unit_price: currentItem.price,
+        image: currentItem.image, // Adicionando a imagem do item
+      };
+    });
+  
     navigate('/Checkout', { state: { items, total } });
   };
+  
 
   return (
     <div className="App">

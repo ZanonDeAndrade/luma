@@ -1,10 +1,12 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import "./Checkout.css";
 
 interface CartItem {
   title: string;
   quantity: number;
   unit_price: number;
+  image: string; // Adiciona a propriedade 'image' para a imagem do produto
 }
 
 interface CartState {
@@ -14,6 +16,7 @@ interface CartState {
 
 const Checkout: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { state } = location;
 
   // Log para depuração
@@ -21,7 +24,7 @@ const Checkout: React.FC = () => {
 
   // Verifica se o estado é válido
   if (!state || !Array.isArray(state.items) || typeof state.total !== 'number') {
-    return <h2>Não há itens no carrinho.</h2>;
+    return <h2 className="checkout-empty-message">Não há itens no carrinho.</h2>;
   }
 
   // Desestrutura o estado
@@ -39,6 +42,7 @@ const Checkout: React.FC = () => {
             title: item.title,
             quantity: item.quantity,
             unit_price: item.unit_price,
+            image: item.image, // Envia a imagem para o backend, se necessário
           })),
           total, // Enviando o total para o backend
         }),
@@ -56,22 +60,37 @@ const Checkout: React.FC = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate('/'); // Redireciona para a página principal
+  };
+
   return (
-    <div>
-      <h2>Carrinho de Compras</h2>
+    <div className="checkout-container">
+      <span className="checkout-back-arrow" onClick={handleBack}>
+        ←
+      </span>
+      <h2 className="checkout-header">Carrinho de Compras</h2>
       {items.length === 0 ? (
-        <p>Seu carrinho está vazio.</p>
+        <p className="checkout-empty-message">Seu carrinho está vazio.</p>
       ) : (
-        <ul>
+        <ul className="checkout-item-list">
           {items.map((item: CartItem, index: number) => (
-            <li key={index}>
-              {item.title} - Quantidade: {item.quantity} - Preço Unitário: R$ {item.unit_price.toFixed(2)}
+            <li className="checkout-item" key={index}>
+              <img 
+                src={item.image} 
+                alt={item.title} 
+              />
+              <div className='descricao'>
+                {item.title} - Quantidade: {item.quantity}
+                <br />
+                <span>Preço Unitário: R$ {item.unit_price.toFixed(2)}</span>
+              </div>
             </li>
           ))}
         </ul>
       )}
-      <h3>Total: R$ {total.toFixed(2)}</h3>
-      <button onClick={handlePayment}>Finalizar Compra</button>
+      <h3 className="checkout-total">Total: R$ {total.toFixed(2)}</h3>
+      <button className="checkout-button" onClick={handlePayment}>Finalizar Compra</button>
     </div>
   );
 };

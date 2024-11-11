@@ -1,0 +1,102 @@
+
+.checkout-container {
+  max-width: 600px; /* Limita a largura do carrinho */
+  margin: 20px auto; /* Centraliza o carrinho na página */
+  padding: 20px; /* Adiciona espaçamento interno */ /* Cor de fundo clara */
+  border-radius: 8px; /* Arredonda os cantos */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra */
+}
+
+.checkout-header {
+  text-align: center; /* Centraliza o título */
+  margin-bottom: 20px; /* Espaçamento abaixo do título */
+  font-size: 24px; /* Tamanho da fonte do título */
+  color: #333; /* Cor do texto do título */
+  margin-top: 10%;
+}
+
+.cart-list {
+  list-style: none; /* Remove os marcadores da lista */
+  padding: 0; /* Remove o preenchimento padrão */
+  margin: 0; /* Remove a margem padrão */
+}
+
+.cart-item {
+  display: flex; /* Alinha os itens em linha */
+  align-items: flex-start; /* Alinha os itens ao topo */
+  padding: 20px 0; /* Espaçamento entre os itens */
+  border-bottom: 1px solid #ddd; /* Linha separadora entre itens */
+}
+
+.cart-item:last-child {
+  border-bottom: none; /* Remove a linha do último item */
+}
+
+img {
+  width: 120px; /* Define o tamanho da imagem */
+  height: auto; /* Mantém a proporção da imagem */
+  margin-right: 15px; /* Espaçamento à direita da imagem */
+  border-radius: 4px; /* Arredonda os cantos da imagem */
+  flex-shrink: 0; /* Impede que a imagem encolha */
+}
+
+.cart-item-details {
+  flex-grow: 1; /* Permite que os detalhes ocupem o espaço restante */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cart-item-title {
+  font-size: 16px; /* Tamanho da fonte do título do item */
+  font-weight: bold; /* Deixa o título em negrito */
+  color: #333; /* Cor do texto do título do item */
+  margin-bottom: 8px; /* Espaçamento entre o título e os outros detalhes */
+  margin-top: 5%;
+}
+
+.checkout-item {
+  font-size: 18px; /* Tamanho da fonte para quantidade e preço */
+  color: #000000; /* Cor do texto para quantidade e preço */
+  line-height: 1.5; /* Espaçamento entre as linhas */
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-top: 15%;
+  gap: 10px; /* Espaçamento entre as informações */
+}
+
+.checkout-total {
+  font-size: 18px; /* Tamanho da fonte do total */
+  font-weight: bold; /* Deixa o total em negrito */
+  color: #333; /* Cor do texto do total */
+  text-align: left; /* Alinha o total à direita */
+  margin-top: 30px; /* Espaçamento acima do total */
+  margin-bottom: 20px; /* Espaçamento abaixo do total */
+}
+
+.checkout-button {
+  display: block; /* Faz o botão ocupar a largura total */
+  width: 100%; /* Largura total do botão */
+  padding: 12px; /* Espaçamento interno do botão */
+  font-size: 16px; /* Tamanho da fonte do botão */
+  color: #fff; /* Cor do texto do botão */
+  background-color: #4CAF50; /* Cor de fundo do botão */
+  border: none; /* Remove bordas do botão */
+  border-radius: 5px; /* Arredonda os cantos do botão */
+  cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+  transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+}
+
+.checkout-button:hover {
+  background-color: #45a049; /* Cor do botão ao passar o mouse */
+}
+
+
+.checkout-back-arrow{
+  background-color: #45a049;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 35px;
+  padding: 0px 8px 1px;
+}
