@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    background-color: #ffff;
+    background-color: #1d7902;
     border-radius: 5px;
     width: 30%;
     margin-left: 34.5%;
@@ -20,9 +20,10 @@
   }
   
   .links-nav a:hover {
-    background-color: var(--cor-verde);
+    background-color: #1d7902;
     color: white;
     border-radius: 5px;
+    
   }
   
 
