@@ -309,7 +309,7 @@ const App: React.FC = () => {
           <div className="row">
             <div className="col-md-6">
               <h3 className="footer-title">Atendimento</h3>
-              <ul>
+              <ul className='atendimento'>
                 <li><a href="/central">Central de Atendimento</a></li>
                 <li><a href="/fale">Fale Conosco</a></li>
                 <li><a className='perguntas' href="/perguntas">Perguntas Frequentes</a></li>
