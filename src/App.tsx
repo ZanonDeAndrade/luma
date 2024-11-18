@@ -62,6 +62,7 @@ const App: React.FC = () => {
     { image: Lembranca6, description: 'Descrição da Lembrança 6', nome: 'Lembrança 6', price: 100.00 },
   ];
 
+
   const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
 
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import "./Checkout.css";
+import Logo from './Assets/logo.png';
 
 interface CartItem {
   title: string;
@@ -65,7 +66,12 @@ const Checkout: React.FC = () => {
   };
 
   return (
+
+
     <div className="checkout-container">
+        <div className="Logo">
+          <img className="Logo" src={Logo} alt="Logo" />
+        </div>
       <span className="checkout-back-arrow" onClick={handleBack}>
         ←
       </span>

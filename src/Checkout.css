@@ -100,3 +100,11 @@ img {
   font-size: 25px;
   padding: 0px 8px 1px;
 }
+
+
+.checkout-container .Logo {
+  width: 50%;
+  margin-top: -2%;
+  margin-bottom: 3%;
+  margin-left: 25%;
+}
