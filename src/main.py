@@ -1,23 +1,33 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 from flask_cors import CORS
-from apimercadopago import gerar_link_pagamento
+from database import db
+from routes import routes
 
+# Configuração do aplicativo Flask
 app = Flask(__name__)
-CORS(app, resources={r"/checkout": {"origins": "http://localhost:3000"}})  # Ajuste a origem conforme necessário
 
-@app.route("/checkout", methods=["POST"])
-def checkout():
-    data = request.get_json()
-    
-    items = data.get("items")  # Obtenha os itens do corpo da requisição
+# Configuração do banco de dados
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pedidos.db'  # Usando SQLite local
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
 
-    # Gerar o link de pagamento com os itens
-    link_iniciar_pagamento = gerar_link_pagamento(items)
+# Configuração do CORS
+CORS(app, resources={
+    r"/checkout": {
+        "origins": ["http://localhost:3000", "http://191.252.205.7"]  # Domínios permitidos
+    }
+})
 
-    if not link_iniciar_pagamento:
-        return jsonify({"error": "Erro ao gerar o link de pagamento"}), 500
+# Registra as rotas da aplicação
+app.register_blueprint(routes)
 
-    return jsonify({"link_pagamento": link_iniciar_pagamento})
+# Função para inicializar o banco de dados
+def init_db():
+    with app.app_context():
+        db.create_all()
+        print("Banco de dados inicializado!")
 
+# Ponto de entrada principal
 if __name__ == "__main__":
-    app.run(debug=True)
+    init_db()
+    app.run(host="0.0.0.0", port=5000, debug=True)

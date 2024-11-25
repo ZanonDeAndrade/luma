@@ -33,7 +33,9 @@ const Checkout: React.FC = () => {
 
   const handlePayment = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/checkout', {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://127.0.0.1:5000';
+    
+      const response = await fetch(`${backendUrl}/checkout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +45,7 @@ const Checkout: React.FC = () => {
             title: item.title,
             quantity: item.quantity,
             unit_price: item.unit_price,
-            image: item.image, // Envia a imagem para o backend, se necessário
+            image: item.image,
           })),
           total, // Enviando o total para o backend
         }),
