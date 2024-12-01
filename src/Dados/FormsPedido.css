@@ -1,0 +1,80 @@
+/* Contêiner do formulário */
+form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  /* Título do formulário */
+  form h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Estilo dos labels */
+  form label {
+    font-size: 1rem;
+    color: #4a5568;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  /* Estilo dos inputs */
+  form input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #f7fafc;
+    transition: border-color 0.3s ease;
+  }
+  
+  form input[type="text"]:focus {
+    border-color: #45a049;
+    outline: none;
+  }
+  
+  /* Estilo do botão de envio */
+  form button {
+    background-color: #45a049;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Espaçamento entre os campos */
+  form div {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo específico para o campo de produtos */
+  form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #f7fafc;
+    height: 150px;
+    resize: none;
+  }
+  
+  

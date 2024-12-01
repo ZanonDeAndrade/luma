@@ -7,7 +7,7 @@ interface CartItem {
   title: string;
   quantity: number;
   unit_price: number;
-  image: string; // Adiciona a propriedade 'image' para a imagem do produto
+  image: string; // Propriedade para imagem do produto
 }
 
 interface CartState {
@@ -25,16 +25,39 @@ const Checkout: React.FC = () => {
 
   // Verifica se o estado é válido
   if (!state || !Array.isArray(state.items) || typeof state.total !== 'number') {
-    return <h2 className="checkout-empty-message">Não há itens no carrinho.</h2>;
+    return (
+      <div className="checkout-container">
+        <h2 className="checkout-empty-message">Não há itens no carrinho.</h2>
+        <button className="checkout-back-button" onClick={() => navigate('/')}>
+          Voltar para a Loja
+        </button>
+      </div>
+    );
   }
 
   // Desestrutura o estado
   const { items, total } = state as CartState;
 
+  // Redireciona para o formulário de pedido
+  const handleNavigateToForm = () => {
+    navigate('/formulario-pedido', {
+      state: {
+        items: items.map(item => ({
+          title: item.title,
+          quantity: item.quantity,
+          unit_price: item.unit_price,
+          image: item.image,
+        })),
+        total,
+      },
+    });
+  };
+
+  // Função para iniciar o pagamento
   const handlePayment = async () => {
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://127.0.0.1:5000';
-    
+
       const response = await fetch(`${backendUrl}/checkout`, {
         method: 'POST',
         headers: {
@@ -63,18 +86,12 @@ const Checkout: React.FC = () => {
     }
   };
 
-  const handleBack = () => {
-    navigate('/'); // Redireciona para a página principal
-  };
-
   return (
-
-
     <div className="checkout-container">
-        <div className="Logo">
-          <img className="Logo" src={Logo} alt="Logo" />
-        </div>
-      <span className="checkout-back-arrow" onClick={handleBack}>
+      <div className="logo">
+        <img className="Logo" src={Logo} alt="Logo" />
+      </div>
+      <span className="checkout-back-arrow" onClick={() => navigate('/')}>
         ←
       </span>
       <h2 className="checkout-header">Carrinho de Compras</h2>
@@ -87,8 +104,9 @@ const Checkout: React.FC = () => {
               <img 
                 src={item.image} 
                 alt={item.title} 
+                className="checkout-item-image"
               />
-              <div className='descricao'>
+              <div className="checkout-item-description">
                 {item.title} - Quantidade: {item.quantity}
                 <br />
                 <span>Preço Unitário: R$ {item.unit_price.toFixed(2)}</span>
@@ -98,7 +116,11 @@ const Checkout: React.FC = () => {
         </ul>
       )}
       <h3 className="checkout-total">Total: R$ {total.toFixed(2)}</h3>
-      <button className="checkout-button" onClick={handlePayment}>Finalizar Compra</button>
+      <div className="checkout-buttons">
+        <button className="checkout-button" onClick={handleNavigateToForm}>
+          Finalizar Compra
+        </button>
+      </div>
     </div>
   );
 };

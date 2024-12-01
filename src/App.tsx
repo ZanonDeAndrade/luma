@@ -5,6 +5,7 @@ import NavigationBar from './NavigationBar';
 import AromaTerapia from './Aroma';
 import Decoracao from './Decoracao';
 import Lembrancas from './Lembrancas';
+import AdminPanel from "./Adm/AdminPanel";
 import Aroma1 from './Assets/Aroma1.jpeg';
 import Aroma2 from './Assets/Aroma2.jpeg';
 import Aroma3 from './Assets/Aroma3.jpeg';
@@ -26,13 +27,17 @@ import Visa from './Assets/Visa.png';
 import Elo from './Assets/Elo.png';
 import MasterCard from './Assets/Master.png';
 import Pix from './Assets/Pix.png';
-import { useNavigate } from 'react-router-dom'; // Importando useNavigate
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'; // Importando useNavigate
+
+
+
 
 interface CartItem {
   itemIndex: number;
   category: string;
   quantity: number;
 }
+
 
 const App: React.FC = () => {
   const navigate = useNavigate(); // Inicializando useNavigate
@@ -195,6 +200,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+
       <div className="background-section background1">
         <div className="Logo">
           <img src={logo} alt="Logo" />

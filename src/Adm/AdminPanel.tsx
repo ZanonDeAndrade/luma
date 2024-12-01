@@ -1,28 +1,47 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "/AdminPanel.css"; // Caso você queira adicionar estilos personalizados
+import "./AdminPanel.css"; // Corrigi a importação do CSS
+
+interface Produto {
+  nome: string;
+  quantidade: number;
+  preco: number;
+}
+
+interface Pedido {
+  id: number;
+  cliente: string;
+  endereco: string;
+  produtos: Produto[];
+  status: string;
+}
 
 const AdminPanel: React.FC = () => {
-  const [pedidos, setPedidos] = useState([]);
-  const [paginaAtual, setPaginaAtual] = useState(1);
-  const [totalPaginas, setTotalPaginas] = useState(1);
+  const [pedidos, setPedidos] = useState<Pedido[]>([]);
+  const [paginaAtual, setPaginaAtual] = useState<number>(1);
+  const [totalPaginas, setTotalPaginas] = useState<number>(1);
 
+  // Carrega os pedidos ao alterar a página atual
   useEffect(() => {
     buscarPedidos(paginaAtual);
   }, [paginaAtual]);
 
+  // Função para buscar pedidos do backend
   const buscarPedidos = async (pagina: number) => {
     try {
       const response = await axios.get(
         `http://localhost:5000/api/pedidos?page=${pagina}&per_page=10`
       );
-      setPedidos(response.data.data);
-      setTotalPaginas(response.data.pages);
+      const { data, pages } = response.data;
+
+      setPedidos(data || []);
+      setTotalPaginas(pages || 1);
     } catch (error) {
       console.error("Erro ao buscar pedidos:", error);
     }
   };
 
+  // Função para atualizar o status de um pedido
   const atualizarStatus = async (id: number, novoStatus: string) => {
     try {
       await axios.put(`http://localhost:5000/api/pedidos/${id}`, {
@@ -50,34 +69,38 @@ const AdminPanel: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {pedidos.map((pedido: any) => (
-            <tr key={pedido.id}>
-              <td>{pedido.id}</td>
-              <td>{pedido.cliente}</td>
-              <td>{pedido.endereco}</td>
-              <td>
-                {pedido.produtos.map((produto: any, index: number) => (
-                  <div key={index}>
-                    {produto.nome} - {produto.quantidade} x R$
-                    {produto.preco.toFixed(2)}
-                  </div>
-                ))}
-              </td>
-              <td>{pedido.status}</td>
-              <td>
-                <select
-                  value={pedido.status}
-                  onChange={(e) =>
-                    atualizarStatus(pedido.id, e.target.value)
-                  }
-                >
-                  <option value="Pendente">Pendente</option>
-                  <option value="Em produção">Em produção</option>
-                  <option value="Enviado">Enviado</option>
-                </select>
-              </td>
+          {pedidos.length > 0 ? (
+            pedidos.map((pedido) => (
+              <tr key={pedido.id}>
+                <td>{pedido.id}</td>
+                <td>{pedido.cliente}</td>
+                <td>{pedido.endereco}</td>
+                <td>
+                  {pedido.produtos.map((produto, index) => (
+                    <div key={index}>
+                      {produto.nome} - {produto.quantidade} x R$
+                      {produto.preco.toFixed(2)}
+                    </div>
+                  ))}
+                </td>
+                <td>{pedido.status}</td>
+                <td>
+                  <select
+                    value={pedido.status}
+                    onChange={(e) => atualizarStatus(pedido.id, e.target.value)}
+                  >
+                    <option value="Pendente">Pendente</option>
+                    <option value="Em produção">Em produção</option>
+                    <option value="Enviado">Enviado</option>
+                  </select>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={6}>Nenhum pedido encontrado.</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
       <div className="pagination">
@@ -87,7 +110,9 @@ const AdminPanel: React.FC = () => {
         >
           Anterior
         </button>
-        <span> Página {paginaAtual} de {totalPaginas} </span>
+        <span>
+          Página {paginaAtual} de {totalPaginas}
+        </span>
         <button
           disabled={paginaAtual === totalPaginas}
           onClick={() => setPaginaAtual(paginaAtual + 1)}

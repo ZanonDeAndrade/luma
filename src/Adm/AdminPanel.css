@@ -1,0 +1,30 @@
+.admin-panel {
+    padding: 20px;
+  }
+  
+  .pedidos-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .pedidos-table th, .pedidos-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .pedidos-table th {
+    background-color: #f4f4f4;
+    text-align: left;
+  }
+  
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+  }
+  
