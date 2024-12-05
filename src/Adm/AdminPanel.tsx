@@ -21,12 +21,12 @@ const AdminPanel: React.FC = () => {
   const [paginaAtual, setPaginaAtual] = useState<number>(1);
   const [totalPaginas, setTotalPaginas] = useState<number>(1);
 
-  // Carrega os pedidos ao alterar a página atual
+
   useEffect(() => {
     buscarPedidos(paginaAtual);
   }, [paginaAtual]);
 
-  // Função para buscar pedidos do backend
+
   const buscarPedidos = async (pagina: number) => {
     try {
       const response = await axios.get(

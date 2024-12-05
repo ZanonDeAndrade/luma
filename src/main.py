@@ -16,7 +16,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 # Configuração do CORS para permitir todas as origens
-CORS(app)  # Habilita CORS para todas as origens e todas as rotas
+CORS(app)  
 
 # Registra as rotas da aplicação
 app.register_blueprint(routes)
